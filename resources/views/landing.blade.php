@@ -2,6 +2,7 @@
 
 @section('container')
     <h2>Welcome to landing page</h2>
+    <h2>Commit test</h2>
     @auth
         <img src="{{ auth()->user()->avatar }}" alt="">
     @endauth
