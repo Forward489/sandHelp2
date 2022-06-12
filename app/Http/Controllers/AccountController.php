@@ -1,0 +1,320 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Laravel\Socialite\Facades\Socialite;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Str;
+use DB;
+use Mail;
+
+use function PHPUnit\Framework\isNull;
+
+class AccountController extends Controller
+{
+    public function login()
+    {
+        return view('account.login', ['title' => 'Login Page']);
+    }
+
+    public function registration()
+    {
+        return view('account.registration', ['title' => 'Registration Page']);
+    }
+
+    public function store(Request $request)
+    {
+        // @dd($request);
+        $check_password = User::where('email', $request->email)->first();
+        if ($check_password != null) {
+            // dd($check_password);
+            if ($check_password->password == null) {
+                $validate = $request->validate(
+                    [
+                        'name' => 'max:255',
+                        'email' => 'required|max:255|email:dns',
+                        'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                    ],
+                    ['password.regex' => 'Password must contain minimum of 1 uppercase, 1 number and 1 unique expression (!$#%_) else then . or ,']
+                );
+
+                $validate['password'] = bcrypt($validate['password']);
+                if ($validate['name'] == "") {
+                    User::where('email', $request->email)->update([
+                        'password' => $validate['password'],
+                        'is_verified' => 1,
+                    ]);
+                } else {
+                    User::where('email', $request->email)->update([
+                        'name' => $validate['name'],
+                        'password' => $validate['password'],
+                        'is_verified' => 1,
+                    ]);
+                }
+                return redirect('/account/login')->with('success', 'You have been registered in our website !');
+            } else {
+                return back()->with('existing_alert', 'Existing e-mail already used in this site');
+            }
+            // User::create($validate);
+        } else {
+            $validate = $request->validate(
+                [
+                    'name' => 'required|max:255',
+                    'email' => 'required|max:255|email:dns|unique:users',
+                    'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                ],
+                ['password.regex' => 'Password must contain minimum of 1 uppercase, 1 number and 1 unique expression (!$#%_) else then . or ,']
+            );
+            $validate['password'] = bcrypt($validate['password']);
+
+            User::create($validate);
+
+            $this->sendVerifyEmail($request->email);
+            return redirect('/account/login')->with('success', 'You have been registered in our website don\'t forget to verify your e-mail to access our website!');
+        }
+        // return redirect('/auth');
+    }
+
+
+
+    public function authenticate(Request $request)
+    {
+        $verified = User::where('email', $request->email)->first();
+        $credentials = $request->validate(
+            [
+                'email' => 'required',
+                'password' => 'required'
+            ],
+            ['password.required' => 'Password must not be empty !']
+        );
+        // dd($check_if_null);
+        // $check_password = User::where('email', $request->email)->first();
+        if (!($verified == null)) {
+            $is_google = $verified->provider;
+            $verified = $verified->is_verified;
+            if ($verified) {
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+                    return redirect()->intended('/');
+                }
+                // else {
+                //     return back()->with('loginError', 'Login failed !');
+                // }
+            } elseif ($is_google == 'google') {
+                return back()->with("reregister", "You need to re-register your email account on the sign up page with this e-mail or just press Login with Google");
+            }
+            // else {
+            //     return back()->with('email_not_verified', 'Verify your e-mail first to login');
+            // }
+        }
+        // dd($check_if_null);
+        // dd($request);
+        // if(!isNull($check_if_null)) {
+        // dd($check_if_null);
+
+        // }
+        return back()->with('loginError', 'Login failed ! Check your e-mail and or password again !');
+        // $check_password_null = User::where('email', $request->email)->first();
+
+        // dd($verification_check);
+
+
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/account/login')->with('logged out', 'Logged out successfully');
+    }
+
+    public function googleLoginRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        // dd($user);
+        $this->createUpdateUser($user, 'google');
+        return redirect('/');
+    }
+
+    private function createUpdateUser($data, $provider)
+    {
+        $user = User::where('email', $data->email)->first();
+
+        if ($user) {
+            $user->update([
+                'provider' => $provider,
+                'provider_id' => $data->id,
+                'avatar' => $data->avatar,
+                // 'is_verified' => 1,
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $data->name,
+                'email' => $data->email,
+                'provider' => $provider,
+                'provider_id' => $data->id,
+                'avatar' => $data->avatar,
+            ]);
+        }
+
+        Auth::login($user);
+    }
+
+    private function sendVerifyEmail($email)
+    {
+        $token = Str::random(64);
+
+        DB::table('verification_tokens')->insert([
+            'email' => $email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        $action_link = route('emailVer', [
+            'token' => $token,
+            'email' => $email,
+            'title' => 'E-mail Verification'
+        ]);
+
+        $body = "Please verify your email on link down below to start accessing our website";
+
+        Mail::send('layouts.email_verification_template', ['action_link' => $action_link, 'body' => $body, 'title' => 'Verify E-mail'], function ($message) use ($email) {
+            $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
+            $message->to($email, 'Sand Help')->subject('Verify E-mail');
+        });
+    }
+
+    public function emailVerification(Request $request, $token = NULL)
+    {
+        return view('account.email_verification', ['title' => 'Verify E-mail', 'token' => $token, 'email' => $request->email]);
+    }
+
+    public function emailVerificationControl(Request $request)
+    {
+        $check_token = DB::table('verification_tokens')->where([
+            'email' => $request->email,
+            'token' => $request->token
+        ])->first();
+
+        if ($check_token) {
+            User::where('email', $request->email)->update([
+                'is_verified' => 1
+            ]);
+
+            DB::table('verification_tokens')->where([
+                'email' => $request->email
+            ])->delete();
+
+            return redirect('account/login')->with('verified', 'Your account is successfully verified, please login to continue !')->with('email', $request->email);
+        }
+        return redirect('account/login')->with('invalid_verification', 'Invalid token for verification! You either verificated your account already or haven\'t registered with that e-mail !');
+    }
+
+    public function forgot_password()
+    {
+        return view('account.forgot_password_index', ['title' => 'Forgot Password']);
+    }
+
+    public function sendForgetToken(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email'
+        ]);
+
+        $check_password_null = User::where('email', $request->email)->first();
+
+        if (!isNull($check_password_null)) {
+            $check_password_null = $check_password_null->password;
+            if ($check_password_null == null) {
+                // dd($check_password_null);
+                return back()->with('google_logged', 'You are logged with Google account. You need to set up your password first at Sign Up');
+            }
+        }
+
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        $action_link = route('reset.password.form', [
+            'token' => $token,
+            'email' => $request->email,
+            'title' => 'Password Reset'
+        ]);
+
+        $body = "We received a request to reset your password under the e-mail of $request->email. To reset your password, click the link below";
+
+        Mail::send('layouts.email_forgot_template', ['action_link' => $action_link, 'body' => $body, 'title' => 'Reset Password'], function ($message) use ($request) {
+            $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
+            $message->to($request->email, 'Sand Help')->subject('Reset Password');
+        });
+
+        return back()->with('sent', 'We have sent you the link to reset your password. Check your e-mail !');
+    }
+
+    public function resetPasswordForm(Request $request, $token = NULL)
+    {
+        return view('account.forgot_password_form', ['title' => 'Reset Password', 'token' => $token, 'email' => $request->email]);
+    }
+
+    public function resetPasswordControl(Request $request)
+    {
+        $request->validate(
+            [
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                'password_confirmation' => 'required'
+            ],
+            ['password.regex' => 'Password must contain a minimum of 1 uppercase, 1 number, and 1 unique expression (!$#%_) except then . or ,']
+        );
+
+        $check_token = DB::table('password_resets')->where([
+            'email' => $request->email,
+            'token' => $request->token
+        ])->first();
+
+        if ($check_token) {
+            User::where('email', $request->email)->update([
+                'password' => bcrypt($request->password)
+            ]);
+
+            DB::table('password_resets')->where([
+                'email' => $request->email
+            ])->delete();
+
+            return redirect('account/login')->with('info', 'Password reset, you can now log in with your new password')->with('email', $request->email);
+        }
+
+        return back()->with('invalid', 'Invalid token !');
+    }
+
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+    //         return redirect()->intended('/mapping');
+    //     }
+
+    //     return back()->with('loginError', 'Login failed !');
+    // }
+
+}
