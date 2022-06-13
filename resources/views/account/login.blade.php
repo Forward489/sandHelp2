@@ -7,6 +7,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if (session()->has('google_captcha_error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('google_captcha_error') }}
+        </div>
+    @endif
     @if (session()->has('verified'))
         <div class="alert alert-primary" role="alert">
             {{ session('verified') }}
@@ -46,7 +51,7 @@
     {{-- <p class="test-css">
             Halo Tes
         </p> --}}
-    <form action="/account/login/post" method="post">
+    <form action="/account/login/post" method="post" id="demo-form">
         @csrf
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
@@ -72,9 +77,16 @@
 
         {{-- <button type="submit" class="btn btn-primary d-flex justify-content-center">Submit</button> --}}
         <div class="text-center">
-            <button type="submit" class="btn btn-primary text">Submit</button>
+            {{-- <button type="submit" class="btn btn-primary text">Submit</button> --}}
+            <button class="g-recaptcha btn btn-primary" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
+                data-callback='onSubmit'>Submit</button>
         </div>
     </form>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
+    </script>
     <div class="text-center">
         or
     </div>

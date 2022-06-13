@@ -28,7 +28,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-        // @dd($request);
+        // dd($request);
         $check_password = User::where('email', $request->email)->first();
         if ($check_password != null) {
             $validate = $request->validate(
@@ -36,6 +36,19 @@ class AccountController extends Controller
                     'name' => 'max:255',
                     'email' => 'required|max:255|email:dns',
                     'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                    'g-recaptcha-response' => function($attribute, $value, $fail) {
+                        $secretKey = env('GOOGLE_CAPTCHA_SECRET');
+                        $response = $value;
+                        $userIP = $_SERVER['REMOTE_ADDR'];
+                        $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                        $response = file_get_contents($url);
+                        $response = json_decode($response);
+                        // dd($response);
+                        if(!$response->success) {
+                            return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
+                            // $fail($attribute, 'Google Recaptcha failed to validate !');
+                        }
+                    }
                 ],
                 ['password.regex' => 'Password must contain minimum of 1 uppercase, 1 number and 1 unique expression (!$#%_) else then . or ,']
             );
@@ -62,9 +75,23 @@ class AccountController extends Controller
         } else {
             $validate = $request->validate(
                 [
+                    
                     'name' => 'required|max:255',
                     'email' => 'required|max:255|email:dns|unique:users',
                     'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                    'g-recaptcha-response' => function($attribute, $value, $fail) {
+                        $secretKey = env('GOOGLE_CAPTCHA_SECRET');
+                        $response = $value;
+                        $userIP = $_SERVER['REMOTE_ADDR'];
+                        $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                        $response = file_get_contents($url);
+                        $response = json_decode($response);
+                        // dd($response);
+                        if(!$response->success) {
+                            return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
+                            // $fail($attribute, 'Google Recaptcha failed to validate !');
+                        }
+                    }
                 ],
                 ['password.regex' => 'Password must contain minimum of 1 uppercase, 1 number and 1 unique expression (!$#%_) else then . or ,']
             );
@@ -83,13 +110,29 @@ class AccountController extends Controller
     public function authenticate(Request $request)
     {
         $verified = User::where('email', $request->email)->first();
+        // dd($request);
         $credentials = $request->validate(
             [
                 'email' => 'required',
-                'password' => 'required'
+                'password' => 'required',
+                'g-recaptcha-response' => function($attribute, $value, $fail) {
+                    $secretKey = env('GOOGLE_CAPTCHA_SECRET');
+                    $response = $value;
+                    $userIP = $_SERVER['REMOTE_ADDR'];
+                    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                    $response = file_get_contents($url);
+                    $response = json_decode($response);
+                    // dd($response);
+                    if(!$response->success) {
+                        return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
+                        // $fail($attribute, 'Google Recaptcha failed to validate !');
+                    }
+                }
             ],
             ['password.required' => 'Password must not be empty !']
         );
+        // dd($credentials);
+        unset($credentials['g-recaptcha-response']);
         // dd($check_if_null);
         // $check_password = User::where('email', $request->email)->first();
         if (!($verified == null)) {
