@@ -3,7 +3,7 @@
 @section('container')
     @if (session()->has('existing_alert'))
         <div class="alert alert-danger" role="alert">
-            {{ session('existing-alert') }}
+            {{ session('existing_alert') }}
         </div>
     @endif
     <form action="/account/registration" method="post">

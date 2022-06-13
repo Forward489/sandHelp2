@@ -31,17 +31,16 @@ class AccountController extends Controller
         // @dd($request);
         $check_password = User::where('email', $request->email)->first();
         if ($check_password != null) {
+            $validate = $request->validate(
+                [
+                    'name' => 'max:255',
+                    'email' => 'required|max:255|email:dns',
+                    'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                ],
+                ['password.regex' => 'Password must contain minimum of 1 uppercase, 1 number and 1 unique expression (!$#%_) else then . or ,']
+            );
             // dd($check_password);
             if ($check_password->password == null) {
-                $validate = $request->validate(
-                    [
-                        'name' => 'max:255',
-                        'email' => 'required|max:255|email:dns',
-                        'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
-                    ],
-                    ['password.regex' => 'Password must contain minimum of 1 uppercase, 1 number and 1 unique expression (!$#%_) else then . or ,']
-                );
-
                 $validate['password'] = bcrypt($validate['password']);
                 if ($validate['name'] == "") {
                     User::where('email', $request->email)->update([
@@ -217,7 +216,7 @@ class AccountController extends Controller
 
             return redirect('account/login')->with('verified', 'Your account is successfully verified, please login to continue !')->with('email', $request->email);
         }
-        return redirect('account/login')->with('invalid_verification', 'Invalid token for verification! You either verificated your account already or haven\'t registered with that e-mail !');
+        return redirect('account/login')->with('invalid_verification', 'Verification failed! You either verified your account already or haven\'t registered with that e-mail !');
     }
 
     public function forgot_password()
