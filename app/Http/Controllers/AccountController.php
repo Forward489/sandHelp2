@@ -67,7 +67,7 @@ class AccountController extends Controller
                         'is_verified' => 1,
                     ]);
                 }
-                return redirect('/account/login')->with('success', 'You have been registered in our website !');
+                return redirect('/account/login')->with('success', 'You are now registered in our website !');
             } else {
                 return back()->with('existing_alert', 'Existing e-mail already used in this site');
             }
@@ -75,7 +75,6 @@ class AccountController extends Controller
         } else {
             $validate = $request->validate(
                 [
-                    
                     'name' => 'required|max:255',
                     'email' => 'required|max:255|email:dns|unique:users',
                     'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',

@@ -58,22 +58,25 @@
             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                 aria-describedby="emailHelp" name="email" value="{{ old('email') }}">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            @error('email')
+                <div class="invalid-feedback">
+                    {{-- @dd($message) --}}
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
-        @error('email')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
+
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                 name="password">
+            @error('password')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
-        @error('password')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
+
 
         {{-- <button type="submit" class="btn btn-primary d-flex justify-content-center">Submit</button> --}}
         <div class="text-center">

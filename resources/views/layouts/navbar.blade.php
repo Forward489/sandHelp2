@@ -53,6 +53,9 @@
                         </div>
                     </li>
                     <li class="nav-item d-flex">
+                        <a class="nav-link me-2 text-decoration-none" href="{{ route('edit_profile') }}">Edit Profile</a>
+                    </li>
+                    <li class="nav-item d-flex">
                         <form action="/account/logout" method="post">
                             @csrf
                             <button type="submit" class="btn btn-link nav-link me-2 text-decoration-none">Logout</button>

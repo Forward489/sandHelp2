@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('name');
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('description')->nullable();
+            $table->float('points', 8, 2)->default(0);
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->string('avatar')->nullable();
