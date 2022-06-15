@@ -15,10 +15,15 @@
         </div>
 
         <input type="hidden" name="email" value="{{ auth()->user()->email }}">
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <label for="profile_picture" class="form-label">Change Profile Picture</label>
-            <input class="form-control" type="file" id="profile_picture" name="profile_picture">
-        </div> --}}
+            <input class="form-control @error('profile_picture') is-invalid @enderror" type="file" id="profile_picture" name="profile_picture">
+            @error('profile_picture')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description about you</label>
             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ auth()->user()->description }}</textarea>

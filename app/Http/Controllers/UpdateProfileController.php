@@ -13,8 +13,10 @@ class UpdateProfileController extends Controller
     }
 
     public function update(Request $request) {
-        $request->validate([
+        // dd($request);
+        $validate = $request->validate([
             'description' => 'required|max:255',
+            'profile_picture' =>'image|file|max:2048',
             'g-recaptcha-response' => function($attribute, $value, $fail) {
                 $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                 $response = $value;
@@ -30,8 +32,15 @@ class UpdateProfileController extends Controller
             }
         ]);
 
+        if($request->file('profile_picture')) {
+            $validate['profile_picture'] = $request->file('profile_picture')->store('profile_pictures');
+        }
+
+        // return $request->file('image')->store('profile_pictures');
+
         User::where('email', $request->email)->update([
             'description' => $request->description,
+            'profile_picture' => $validate['profile_picture'],
         ]);
 
         return back()->with('updated', 'You have successfully updated your description and or your profile picture !');

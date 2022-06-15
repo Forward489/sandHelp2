@@ -18,6 +18,7 @@
                     <a class="nav-link {{ request()->segment(1) == 'testing' ? 'active' : '' }}"
                         href="/testing">Testing</a>
                 </li>
+                
                 @auth
                 <li class="nav-item">
                     <a class="nav-link {{ request()->segment(1) == 'payPal' ? 'active' : '' }}"
@@ -46,14 +47,22 @@
           </li> --}} -->
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                @auth
+                @guest
                     <li class="nav-item d-flex">
-                        <div class="nav-link me-2 text-decoration-none">
-                            Welcome back, {{ auth()->user()->name }}
-                        </div>
+                        <a class="nav-link me-2 {{ request()->segment(1) == 'regisTest' ? 'active' : '' }}" href="{{ route('regist_trial') }}">Regist Trial</a>
                     </li>
                     <li class="nav-item d-flex">
-                        <a class="nav-link me-2 text-decoration-none" href="{{ route('edit_profile') }}">Edit Profile</a>
+                        <a class="nav-link me-2 {{ request()->segment(1) == 'loginTest' ? 'active' : '' }}" href="{{ route('login_trial') }}">Login Trial</a>
+                    </li>
+                @endguest
+                @auth
+                    <li class="nav-item d-flex">
+                        <a class="nav-link me-2 text-decoration-none">
+                            Welcome back, {{ auth()->user()->name }}
+                        </a>
+                    </li>
+                    <li class="nav-item d-flex">
+                        <a class="nav-link me-2 {{ request()->segment(1) == 'edit_profile' ? 'active' : '' }}" href="{{ route('edit_profile') }}">Edit Profile</a>
                     </li>
                     <li class="nav-item d-flex">
                         <form action="/account/logout" method="post">

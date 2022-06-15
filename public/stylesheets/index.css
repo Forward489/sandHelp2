@@ -1,0 +1,551 @@
+@font-face {
+    font-family: 'ZonaProUltra';
+    src: url("/Fonts/ZonaPro-ExtraLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'ZonaProUltra';
+    font-weight: bold;
+    src: url("/Fonts/ZonaPro-Bold.otf") format("opentype");
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    color: #c28400;
+}
+
+
+input[type="number"]:focus {
+    outline: none;
+}
+
+input[type="number"]:focus::placeholder {
+    color: white;
+}
+
+input[type="text"]{
+    background-color: #fceee1;
+    border: 0.5px solid #e9cea0;   
+    color: #c28400;
+}
+
+input[type="text"]::placeholder{
+    
+}
+
+input[type="text"]:focus {
+    outline: none;
+    background-color: #dcbe89;
+    color: white;
+}
+
+input[type="text"]:focus::placeholder {
+    color: white;
+}
+
+.checkbox{
+    outline: #125688;
+}
+
+
+
+
+input[type="checkbox"]:checked{
+    background-color: #dcbe89;
+    border: 0.5px solid #c28400;
+}
+
+input[type="checkbox"]{
+    border: 0.5px solid #c28400;
+}
+
+input[type="checkbox"]:focus{
+    box-shadow: none;
+    border: 0.5px solid #c28400;
+}
+
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-weight: normal;
+    color: #e2ac4d;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-weight: normal;
+    color: #e2ac4d;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    font-weight: normal;
+    color: #e2ac4d;
+  }
+
+  
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Body */
+*{
+    
+    font-family: 'Poppins', sans-serif;
+}
+/* Body end */
+
+
+
+
+/* Background beach video */
+#background-beach-container {
+    padding-top: 100px;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 150vh;
+}
+
+@media only screen and (max-width: 600px) {
+    #background-beach-container {
+        height: 100vh;
+    }
+
+}
+
+/* Video settings */
+.video_beach {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 150vh;
+    object-fit: cover;
+    opacity: 1;
+    margin-left: -15px;
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .video_beach {
+        width: 100%;
+        height: 100vh;
+    }
+
+}
+/* Video settings end */
+
+
+/* Big text */
+#currentProgress {
+    font-family: 'ZonaProUltra', sans-serif;
+    font-size: 6vw;
+    font-weight: bold;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.603);
+}
+
+@media only screen and (max-width: 600px) {
+    #currentProgress {
+        font-size: 12vw;
+    }
+
+}
+
+#totalDonation {
+    font-family: 'ZonaProUltra', sans-serif;
+    padding-top: 35vh;
+    font-size: 2vw;
+    font-weight: bold;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.603);
+}
+
+@media only screen and (max-width: 600px) {
+    #totalDonation {
+        padding-top: 20vh;
+        font-size: 6vw;
+    }
+
+}
+/* Big text end */
+
+
+
+/* Background Beach Video end */
+
+/* Donation cards area */
+#btnKgRight {
+    width: 100%;
+    margin-top: 8px;
+    height: 5.5vh;
+    border-radius: 8px;
+    border: 0.5px solid #e9cea0;
+    color: #e2ac4d;
+    background-color: #fceee1;
+    font-size:small ;
+    margin-left: -20px;
+
+}
+
+#btnKgLeft {
+    width: 100%;
+    margin-top: 8px;
+    height: 5.5vh;
+    border-radius: 8px;
+    border: 0.5px solid #e9cea0;
+    color: #e2ac4d;
+    background-color: #fceee1;
+    font-size:small ;
+    margin-right: -20px;
+
+}
+@media only screen and (max-width: 600px) {
+    #btnKgLeft {
+        margin-right: 0px;
+    }
+
+    #btnKgRight {
+        margin-left: 0px;
+    }
+}
+
+
+#btnKg:hover {
+    background-color: #dab77b;
+}
+
+
+#btnSubmit {
+    color: white;
+    margin-top: 15px;
+    height: 5.5vh;
+    border-radius: 30px;
+    border: 0.5px solid #e9cea0;
+    background-color: #dcbe89;
+    font-weight: bold;
+    font-size: large;
+}
+
+#btnSubmit:hover {
+    background-color: #dab77b;
+}
+
+
+
+#donationCard {
+    margin-top: -10vh;
+    align-self: center;
+    width: 60%;
+    border: 0.5px solid rgba(29, 29, 29, 0.281);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.247);
+    margin-bottom: 10vh;
+}
+
+#donationCard2 {
+    margin-top: -10vh;
+    align-self: center;
+    width: 60%;
+    border: 0.5px solid rgba(29, 29, 29, 0.281);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.247);
+    margin-bottom: 10vh;
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    #donationCard {
+        width: 100%;
+        margin-top: 0;
+    }
+    #donationCard2 {
+        width: 100%;
+        margin-top: 0;
+    }
+    #btnKg{
+        width: 80%;
+        height: 7vh;
+    }
+    #btnSubmit{
+        width: 80%;
+        height: 7vh;
+    }
+
+}
+
+.card-body h1 {
+    font-weight: bold;
+
+}
+
+#areaDonasi {
+
+    background-image: linear-gradient(to bottom,white , #fdf1d6);
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    #areaDonasi {
+
+    }
+}
+
+
+#amountDonation {
+    border-radius: 8px;
+    border: 0.5px solid #e9cea0;
+    background-color: #fceee1;
+    width: 94%;
+    margin-top: -15px;
+    height: 5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+    color: white;
+}
+
+
+#errorInputKgTab {
+    color: red;
+    font-weight: bold;
+    padding-left: 3%;
+    padding-top: 1vh;
+    font-size: small;
+}
+
+@media only screen and (max-width: 600px) {
+    #errorInputKgTab {
+        padding-left: 5%;
+    }
+
+    #amountDonation{
+        width: 100%;
+        height: 7vh;
+        margin-top: -15px;
+    }
+
+}
+
+.inputDetails {
+    border-radius: 8px;
+    border-width: 0.5px;
+    border-color: rgba(128, 128, 128, 0.178);
+    width: 100%;
+    height: 5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+    margin-bottom: 3vh;
+}
+
+
+
+.inputDetails:focus {
+    background-color: #ffcc5e;
+    border-width: 0.5px;
+    border-color: rgba(128, 128, 128, 0.178);
+}
+
+.labelInputs{
+    font-weight: bold;
+    color: #d8b16f;
+}
+
+#paymentOption{
+    background-color: #fceee1;
+    border: 0.5px solid #e9cea0;   
+    color: #c28400;
+}
+
+option:hover{
+    background-color: yellow;
+}
+
+
+#anonymousCheckbox {
+    padding-left: 20px;
+}
+
+
+
+
+
+#previousCard {
+    font-weight: bold;
+    color: #c28400;
+}
+
+#previousCard:hover {
+    color: #b67d03;
+    text-decoration: underline;
+}
+/* Donation cards area end*/
+
+/* Leaderboard */
+
+#backgroundSwitch{
+    margin-top: 50px;
+    background-color: rgb(199, 198, 198);
+    margin-bottom: 5vh;
+    width: max-content;
+    border-radius: 100px;
+    display: inline-flex;
+    text-align: center;
+    height: fit-content;
+    z-index: -1;
+
+}
+
+#switchInner1{
+    border: none;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 13vw;
+    height: 4vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100px;
+    font-weight: bold;
+    top: 50%;
+    font-size: small;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.247);
+}
+
+#switchInner2{
+    border: none;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 13vw;
+    height: 4vh;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 100px;
+    font-weight: bold;
+    top: 50%;
+    font-size: small;
+ }
+
+.search{
+    background-color: white;
+    width: max-content;
+    border-radius: 100px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.247);
+}
+
+
+.search input{
+    background-color: white;
+    border: none;
+}
+
+.search input:focus{
+    background:white;
+    color: #c28400;
+}
+
+
+input{
+    border: none;
+    border-radius: 100px;
+    background: none;
+    width: 24vw;
+    padding-left: 15px;
+    height: 35px;
+}
+.search button{
+    padding-right: 15px;
+    margin-right: 0.1vw;
+    border-radius: 100px;
+    border: none;
+    background:none;
+}
+
+.container-leaderboard{
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.247);
+    border-radius: 10px;
+    width: 40vw;
+    margin-top: 8%;
+}
+
+#badge{
+    position: relative;
+    height: 100px;
+    margin-left:-90px;
+    
+}
+
+.block-text-leaderboard{
+    margin-top: 23px;
+    position: absolute;
+}
+
+#nama-leaderboard{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#pesan-leaderboard{
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.timestamp{
+    font-size: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #switchInner1 {
+        font-size: smaller;
+        width: 35vw;
+        height: fit-content;
+    }
+    #switchInner2 {
+        font-size: smaller;
+        width: 35vw;
+        height: fit-content;
+    }
+    #backgroundSwitch{
+    }
+
+    .search input{
+        width: 65vw;
+    }
+
+    #badge{
+        height: 50px;
+        margin-left: 0%;
+        margin-top: -20px;
+    }
+
+    .container-leaderboard{
+        width: 95vw;
+        height: fit-content
+    }
+
+    .block-text-leaderboard{
+        position: relative;
+    }
+
+    #nama-leaderboard{
+        font-size: smaller;
+
+    }
+    
+    #pesan-leaderboard{
+        font-size: smaller;
+
+    }
+
+}
+
+/* Leaderboard end */
+
+
+

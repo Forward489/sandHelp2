@@ -36,6 +36,7 @@ class AccountController extends Controller
                     'name' => 'max:255',
                     'email' => 'required|max:255|email:dns',
                     'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+                    'password_confirmation' => 'required',
                     'g-recaptcha-response' => function($attribute, $value, $fail) {
                         $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                         $response = $value;
@@ -108,8 +109,8 @@ class AccountController extends Controller
 
     public function authenticate(Request $request)
     {
+        // dd($request);    
         $verified = User::where('email', $request->email)->first();
-        // dd($request);
         $credentials = $request->validate(
             [
                 'email' => 'required',

@@ -31,6 +31,13 @@ Route::get('/payPal', function() {
     return view('feature.payPal', ['title' => 'PayPal Testing']);
 })->middleware('auth');
 
+Route::get('/regisTest', function() {
+    return view('account.registration2', ['title' => 'SandHelp-Register']);
+})->name('regist_trial');
+Route::get('/loginTest', function() {
+    return view('account.login2', ['title' => 'SandHelp-Login']);
+})->name('login_trial');
+
 
 
 // Route::get('/login/google/redirect', [AccountController::class, 'googleLoginRedirect'])->name('googleLogin');

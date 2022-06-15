@@ -1,0 +1,316 @@
+input:focus {
+    outline: none;
+    color: #dcbe89;
+}
+
+input:focus::placeholder {
+}
+
+input{
+    color: #dcbe89;
+}
+
+
+
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-weight: normal;
+    color: #e2ac4d;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-weight: normal;
+    color: #e2ac4d;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    font-weight: normal;
+    color: #e2ac4d;
+  }
+
+
+
+html{
+
+}
+
+.layer{
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 0%;
+    position: fixed;
+    background-color: rgba(70, 70, 70, 0.295);
+    
+}
+
+
+#form_input{
+    /* background-color: rgba(255, 255, 255, 0.979); */
+    background:linear-gradient(to bottom, #fae4bf, white);
+    border-radius:10px;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.178);
+}
+
+
+
+/* Video settings */
+#video-container {
+    padding-top: 100px;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 120vh;
+}
+
+@media only screen and (max-width: 600px) {
+    #video-container {
+        height: max-content;
+    }
+
+}
+
+.video_beach {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: max-content;
+    object-fit: cover;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    .video_beach {
+        width: 100%;
+        height: 120vh;
+    }
+
+}
+/* Video settings end */
+
+
+.login-card{
+    width: 80%;
+    margin-left: 10%;
+    transform: scale(0.9);
+}
+
+.forgot-card{
+    width: 80%;
+    margin-left: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+    .login-card{
+        padding-left: 7.5vw;
+        margin-top: 0px;
+        margin-left: -15px
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    html{
+        overflow: hidden;
+    }
+}
+
+body{
+    font-family: "Poppins",sans-serif;
+}
+.welcome{
+    font-weight: bolder;
+    color: #c28400;
+    margin-top: -20px;
+}
+
+.banner{
+    transform: scale(0.8);
+}
+
+.inputWrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputWrapper1{
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputWrapper2{
+    
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputLabel{
+    margin-top: 30px;
+    margin-bottom: -100px;
+    font-weight: bold;
+    color: #c28400;
+}
+
+.inputBox{
+    padding-top: 5px;
+    width: 30vh;
+    border: 0px;
+    border-bottom: 1px solid #c285006e;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+
+.inputBox:focus{
+    outline: none;
+}
+
+
+.forget-password{
+    padding-top: 15px;
+    font-weight: bold;
+    color: #c28400;
+}
+
+a:hover{
+    padding-top: 15px;
+    font-weight: bold;
+    color: #a57101;
+    text-decoration: none;
+}
+
+.or{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.or hr{
+    position: absolute;
+    z-index: 1;
+    width: 75%;
+    border-color: #c28400 ;
+
+}
+
+.or p{
+    position: absolute;
+    top: 3.5px;
+    background:linear-gradient(to bottom, #fff8eb,#fff6f6);
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 10;
+    color:#c28400  ;
+    
+}
+
+.sign-in, .next,.register, .reset,.verify{
+    width: 250px;
+    color: white;
+    margin-top: 15px;
+    height: 6vh;
+    border-radius: 30px;
+    border: 0.5px solid #e9cea0;
+    background-color: #c28400;
+    font-weight: bold;
+    font-size: large;
+}
+
+.sign-in:hover, .next:hover, .register:hover, .reset:hover,.verify:hover{
+    background-color: #dab77b;
+}
+
+.google{
+    width: 250px;
+    color: white;
+    margin-top: 15px;
+    height: 6vh;
+    border-radius: 30px;
+    border: 0.5px solid #e9cea0;
+    background-color: #c28400;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.google:hover{
+    background-color:#c28500a2
+}
+
+.create-account , .suddenly-remember, .have-account{
+    font-weight: bold;
+    color: #e1c180 ;
+    padding-bottom: 50px;
+}
+
+.create-account a , .suddenly-remember a , .have-account a{
+    font-weight: bolder;
+    color: #c28400 ;
+}
+
+.create-account a:hover , .suddenly-remember a:hover, .have-account a:hover{
+    color: #a57101;
+}
+
+@media only screen and (max-width: 600px) {
+
+    #video-container{
+    }
+
+    .video_beach{
+    }
+
+    .banner{
+        transform: scale(0.8);
+    }
+
+    .sign-in, .next,.register, .reset, .verify{
+        width: 200px;
+        font-size: smaller;
+        margin-bottom: -10px;
+    }
+
+    .google{
+        margin-top: -10px;
+        width: 200px;
+        font-size: smaller;
+    }
+
+    .forget-password{
+        font-size: 70%;
+    }
+    .welcome{
+        margin-bottom: -15px;
+        font-size: large;
+    }
+    .create-account, .have-account{
+        margin-bottom: -15px;
+        padding-bottom: 10vh;
+    }
+
+    .dont-worry-box{
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-top: 20px;
+    }
+
+    body{
+        background-repeat: repeat;
+        overflow-y:visible;
+    }
+
+    .login-card{
+        padding-top: 5.5vh;
+        width: 100vw;
+    }
+
+    #mobile-ruiner{
+        display: none;
+    }
+}

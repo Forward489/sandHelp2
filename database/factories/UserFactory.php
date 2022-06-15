@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'description' => $this->faker->sentence(),
             'points' => mt_rand(0, 1000),
+            'is_verified' => 1,
             /*
              $table->id();
             $table->string('email')->unique();

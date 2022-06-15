@@ -1,0 +1,83 @@
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.767);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 40px;
+}
+
+.sidebar a {
+    padding-left: 30px;
+    padding-top: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    /* text-shadow: 2px 2px rgba(0, 0, 0, 0.603); */
+    font-weight: bold;
+    color: #201f1fd3;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #201f1fd3;
+    text-decoration: none;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    padding-top: 10px;
+}
+
+.bar:hover{
+    background-color:rgba(255, 255, 255, 0.767)
+}
+
+.openbtn {
+    font-size: 20px;
+    right: 15px;
+    position: fixed;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 100px;
+    border-color: white;
+    z-index: 2;
+}
+
+.openbtn:hover {
+    background-color: rgb(173, 173, 173);
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+
+.profile{
+    bottom: 0;
+    position: absolute;
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+/* Sidebar End */

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="icon" type="image/png" href="/Images/favicon.png">
+
+    <link rel="stylesheet" href="/stylesheets/index.css">
+
+    <script src="/Scripts/includeHtml.js"></script>
+    <script src="/Scripts/popup.js"></script>
+
+    <title>SAND HELP</title>
+</head>
+
+<div style="overflow-x:hidden;">
+
+    <body onload="changeBackground('logo')">
+
+        <div w3-include-html="/htmls/sidebar.html"></div>
+
+        <div class="container-full">
+
+            <!-- Background Beach Container -->
+            <div id="background-beach-container" class="container-fluid ">
+
+                <!-- Video Background -->
+                <video autoplay muted loop class="video_beach" id="player">
+                    <source id="beach_video_background" src="" type="video/mp4" />
+                </video>
+                <!-- Video Background End -->
+
+                <!-- Total Donation Text -->
+                <h3 class="text-center text-white" id="totalDonation">
+                    DONATION RAISED <br>
+                </h3>
+                <h1 class="count text-center text-white" data-value=2000000000 id="currentProgress">0</h1>
+                <!-- Total Donation Text End -->
+
+            </div>
+            <!-- Background Beach Container End -->
+
+            <!-- Container donasi -->
+            <div class="container-fluid" id="areaDonasi">
+                <div class="row">
+                    <!-- Left column -->
+                    <div class="col-md-4 col-sm-4">
+
+                    </div>
+                    <!-- Left column end -->
+
+                    <!-- Middle column -->
+                    <div class="col-md-4 col-sm-4">
+                        <form action="" method="POST">
+                            <!-- Card bagian 1 -->
+                            <div class="card mx-auto" id="donationCard">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="text-center" style="transform: scale(1.6);">
+                                        <img src="/Images/banner.png" style="margin-top: -15px;margin-bottom:-15px"
+                                            width="100%" alt="test">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 text-center">
+                                            <button class="" id="btnKgLeft" data-value=10
+                                                onclick="setKg(this)">10kg</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="" id="btnKgRight" data-value=20
+                                                onclick="setKg(this)">20kg</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 text-center">
+                                            <button class="" id="btnKgLeft" data-value=100
+                                                onclick="setKg(this)">100kg</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="" id="btnKgRight" data-value=200
+                                                onclick="setKg(this)">200kg</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
+                                        <input type="number" id="amountDonation" onclick="resetColorButtons()"
+                                            placeholder="Other amount" name="amountDonation">
+                                    </div>
+
+                                    <div id="errorInputKgTab"></div>
+                                    <hr style="border: solid 2px #bc8033">
+                                    <div class="text-center">
+                                        <button id="btnSubmit" type="button" onclick="" style="width: 95%;;">
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Card body end -->
+                            </div>
+                            <!-- Card bagian 1 end -->
+
+                            <!-- Card bagian 2 -->
+                            <div class="card mx-auto" id="donationCard2" style="display:none;">
+                                <div class="card-body">
+                                    <h1 class="text-center"
+                                        style="color:#dbbe8b ;text-shadow:1px 1px rgba(0, 0, 0, 0.521)">
+                                        Details
+                                    </h1>
+                                    <hr>
+                                    <label for="displayName" class="labelInputs">Name</label>
+                                    <br>
+                                    <input type="text" id="displayName" class="inputDetails" required
+                                        onclick="resetColorButtons()" placeholder="Name" name="amountDonation">
+                                    <br>
+                                    <label for="message" class="labelInputs">Message</label>
+                                    <br>
+                                    <input type="text" id="displayName" class="inputDetails"
+                                        onclick="resetColorButtons()" placeholder="Message for Indonesia's Beach"
+                                        name="amountDonation">
+                                    <br>
+                                    <label for="total" class="labelInputs">Total</label>
+                                    <br>
+                                    <input type="text" id="total" class="inputDetails" onclick="resetColorButtons()"
+                                        name="amountDonation" readonly value="Rp. ">
+                                    <br>
+                                    <label for="paymentOption " class="labelInputs">Choose payment method</label>
+                                    <br>
+                                    <div class="input-group">
+                                        <select class="custom-select" id="paymentOption" required>
+                                            <option selected>Choose payment..</option>
+                                            <option value="1" style="font-weight: bold;">Paypal</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label" class="labelInputs" id="anonymousCheckbox">
+                                            <input type="checkbox" class="form-check-input checkbox" value="">
+                                            <div style="font-weight: bold;color:#d8b16f;">Send anonymously</div>
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <input type="submit" value="Pay" id="btnSubmit" style="width: 100%;">
+                                    <div class="text-center mt-3">
+                                        <a onclick="" id="previousCard">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Card bagian 2 end -->
+                    </div>
+                    <!-- Middle Column End -->
+
+                    <!-- Left column -->
+                    <div class="col-md-4 col-sm-4">
+
+                    </div>
+                    <!-- Left column end -->
+                </div>
+                <!-- Container donasi end -->
+
+
+                <div class="container-fluid" id="leaderboard">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-2">
+
+                        </div>
+                        <div class="col-md-6 col-sm-8 mx-auto text-center pt-5 mt-5 pb-5 mb-5">
+                            <h1 style="font-weight: bold; text-align:center;">LEADERBOARD</h1>
+                            <div class="" id="backgroundSwitch">
+                                <button id="switchInner1" onclick="switchLeaderboardRecent()">
+                                    RECENT TRASH
+                                </button>
+                                <button id="switchInner2" onclick="switchLeaderboardMost()">
+                                    MOST TRASH
+                                </button>
+
+                            </div>
+                            <br>
+                            <div style="display: flex; justify-content:center; align-items:center">
+                                <div class="search">
+                                    <input type="text" placeholder="Search.." name="search">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content:center; align-items:center">
+                                <div class="leaderboard-body" id="leaderboard-body">
+                                    <div class="container-leaderboard bg-light text-left">
+
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <img src="/Images/TIER 1.png" alt="" id="badge">
+                                            </div>
+                                            <div class="col-8">
+                                                <h2 id="nama-leaderboard" style="display: inline-block;">
+                                                    Glenn Steven Santoso 
+                                                </h2>
+                                                <h5 id="pesan-leaderboard">
+                                                    Long live Indonesian Beach !
+                                                </h5>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="amount-leaderboard">
+                                                    <span>10</span> Kg
+                                                </div> 
+                                                 <p class="timestamp">
+                                                    6/14/2022, 7:49:55 AM
+                                                 </p>
+                                            </div>
+                                        </div>
+                                        <div style="display: inline-block;" class="block-text-leaderboard">
+
+                                            
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-3 col-sm-2">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</div>
+
+<!-- Javascripts -->
+<script>
+
+    //Navbar Function
+    function openNav() {
+        document.getElementById("openBtn").style.visibility = "hidden";
+
+
+        document.getElementById("mySidebar").style.width = "20%";
+        document.getElementById("main").style.marginLeft = "20%";
+        if (window.innerWidth <= 600) {
+            document.getElementById("mySidebar").style.width = "100%";
+            document.getElementById("main").style.marginLeft = "100%";
+        }
+    }
+
+    function closeNav() {
+        document.getElementById("openBtn").style.visibility = "visible";
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+    //Navbar Function End
+
+
+    //Animate Number Function
+    function animateProgessNumber(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const currencyFractionDigits = new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'IDR',
+            }).resolvedOptions().maximumFractionDigits;
+            obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString('en-US', {
+                maximumFractionDigits: currencyFractionDigits
+            });
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+    obj = document.getElementById("currentProgress");
+    console.log(obj.getAttribute("data-value"))
+    animateProgessNumber(obj, 0, Number(obj.getAttribute("data-value")), 2000)
+
+    //Function Ganti background sesuai jam
+    function changeBackground() {
+        var now = new Date();
+        hour = now.getHours();
+        // hour = 18;
+        // x = 1;
+        if (hour >= 0 && hour <= 3) {
+            document.querySelector('#player').setAttribute("src", "/Videos/background_beach_night.mp4");
+        } else if (hour >= 4 && hour <= 7) {
+            document.querySelector('#player').setAttribute("src", "/Videos/background_beach_dawn.mp4");
+        }
+        else if (hour >= 8 && hour <= 14) {
+            document.querySelector('#player').setAttribute("src", "/Videos/background_beach_sunny.mp4");
+        }
+        else if (hour >= 15 && hour <= 17) {
+            document.querySelector('#player').setAttribute("src", "/Videos/background_beach_dawn.mp4");
+        }
+        else if (hour >= 18 && hour <= 24) {
+            document.querySelector('#player').setAttribute("src", "/Videos/background_beach_night.mp4");
+        }
+    }
+    //changeBackground();
+
+
+    // Set Kilograms choose
+    var amount = null;
+    var inputAmount = document.getElementById("amountDonation");
+    var buttonBefore = null
+    function setKg(btnChoose) {
+        inputAmount.style.backgroundColor = "#fceee1";
+        if (buttonBefore != null) {
+            buttonBefore.style.backgroundColor = "#fceee1";
+            buttonBefore.style.border = "0.5px solid #e9cea0";
+            buttonBefore.style.color = "#e2ac4d"
+        }
+        buttonBefore = btnChoose;
+
+        amount = btnChoose.getAttribute('data-value');
+        btnChoose.style.backgroundColor = "#dcbe89";
+        btnChoose.style.border = "0px solid black";
+        btnChoose.style.color = "white";
+        inputAmount.value = null;
+    }
+
+    //Reset warna button yang tidak dipilih
+    function resetColorButtons() {
+        buttonBefore.style.backgroundColor = "#fceee1";
+        buttonBefore.style.border = "0.5px solid #e9cea0";
+        buttonBefore.style.color = "#e2ac4d"
+        inputAmount.style.border = "0.5px solid #e9cea0";
+        inputAmount.style.backgroundColor = "#dcbe89";
+        amount = null;
+    }
+
+    var buttonRecent = document.getElementById("switchInner1");
+    var buttonMost = document.getElementById("switchInner2");
+
+    function switchLeaderboardRecent() {
+
+        buttonMost.style.boxShadow = "0px 0px";
+        buttonMost.style.backgroundColor = "rgba(255, 255, 255, 0)";
+        buttonRecent.style.boxShadow = "0px 0px 10px 5px rgba(0, 0, 0, 0.247)"
+        buttonRecent.style.backgroundColor = "rgba(255, 255, 255, 1)";
+
+    }
+
+    function switchLeaderboardMost() {
+
+        buttonRecent.style.boxShadow = "0px 0px";
+        buttonRecent.style.backgroundColor = "rgba(255, 255, 255, 0)";
+        buttonMost.style.boxShadow = "0px 0px 10px 5px rgba(0, 0, 0, 0.247)"
+        buttonMost.style.backgroundColor = "rgba(255, 255, 255, 1)";
+
+    }
+
+    includeHTML();
+
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            if (inputAmount.value != "") {
+                amount = inputAmount.value;
+            }
+            if (amount != null) {
+                $("#donationCard").hide();
+                $("#donationCard2").show();
+                var jumlahBayar = parseInt(amount) * 5000;
+                const currencyFractionDigits = new Intl.NumberFormat('de-DE', {
+                    style: 'currency',
+                    currency: 'IDR',
+                }).resolvedOptions().maximumFractionDigits;
+                document.getElementById("total").value = "Rp. " + jumlahBayar.toLocaleString('en-US', {
+                    maximumFractionDigits: currencyFractionDigits
+                }) + ".00 (" + amount + " kg)";
+            }
+            else {
+                var errorInputTab = document.getElementById("errorInputKgTab");
+                errorInputTab.innerHTML = "Masukkan input terlebih dahulu!";
+            }
+
+        });
+        $("#previousCard").click(function () {
+            $("#donationCard2").hide();
+            $("#donationCard").show();
+            inputAmount.value = "";
+            buttonBefore.style.backgroundColor = "#fceee1";
+            buttonBefore.style.border = "0.5px solid #e9cea0";
+            buttonBefore.style.color = "#e2ac4d"
+            amount = null;
+            document.getElementById("errorInputKgTab").innerHTML = "";
+        });
+    });
+</script>
+
+
+<!-- Jquery -->
+<script>
+    $(document).ready(function () {
+        $(".container-full").click(function () {
+            closeNav();
+        });
+    });
+</script>
+
+</html>
