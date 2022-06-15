@@ -127,7 +127,7 @@ class AccountController extends Controller
                         return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
                         // $fail($attribute, 'Google Recaptcha failed to validate !');
                     }
-                }
+                },
             ],
             ['password.required' => 'Password must not be empty !']
         );
@@ -270,7 +270,20 @@ class AccountController extends Controller
     public function sendForgetToken(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email'
+            'email' => 'required|email|exists:users,email',
+            'g-recaptcha-response' => function($attribute, $value, $fail) {
+                $secretKey = env('GOOGLE_CAPTCHA_SECRET');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                $response = file_get_contents($url);
+                $response = json_decode($response);
+                // dd($response);
+                if(!$response->success) {
+                    return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
+                    // $fail($attribute, 'Google Recaptcha failed to validate !');
+                }
+            },
         ]);
 
         $check_password_null = User::where('email', $request->email)->first();
@@ -282,7 +295,6 @@ class AccountController extends Controller
                 return back()->with('google_logged', 'You are logged with Google account. You need to set up your password first at Sign Up');
             }
         }
-
 
         $token = Str::random(64);
 

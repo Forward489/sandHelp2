@@ -37,6 +37,9 @@ Route::get('/regisTest', function() {
 Route::get('/loginTest', function() {
     return view('account.login2', ['title' => 'SandHelp-Login']);
 })->name('login_trial');
+Route::get('/forgotPassword', function() {
+    return view('account.forgot_password_index2', ['title' => 'SandHelp-Login']);
+})->name('forgot_password_trial');
 
 
 

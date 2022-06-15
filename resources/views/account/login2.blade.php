@@ -51,7 +51,7 @@
                 <label for="password" class="inputLabel font-weight-light">{{ $message }}</label>
             @enderror
             <div class="text-right pt-3">
-                <a href="#" class="forget-password">Forgot Password?</a>
+                <a href="{{ route('forgot_password_trial') }}" class="forget-password">Forgot Password?</a>
             </div>
             <br>
             <div class="text-center pt-3">
