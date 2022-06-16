@@ -1,7 +1,7 @@
 @extends('layouts.main2')
 
 @section('content')
-    {{-- @include('layouts.popup') --}}
+    @include('layouts.popup')
     <h3 class="welcome pb-5">
         Welcome to SandHelp
     </h3>
@@ -21,7 +21,11 @@
         <label class="inputLabel font-weight-light">{{ session('reregister') }}</label>
     @endif
     @if (session()->has('loginError'))
+        {{-- <div class="animate__animated animate__fadeIn animate__">
+
+        </div> --}}
         <label class="inputLabel font-weight-light">{{ session('loginError') }}</label>
+        {{-- <label class="inputLabel font-weight-light">{{ session('loginError') }}</label> --}}
     @endif
     @if (session()->has('email_not_verified'))
         <label class="inputLabel font-weight-light">{{ session('email_not_verified') }}</label>

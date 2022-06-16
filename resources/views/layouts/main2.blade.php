@@ -26,6 +26,8 @@
     <script src="/Scripts/changeBackground.js"></script>
     <script src="/Scripts/showPopup.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <title>{{ $title }}</title>

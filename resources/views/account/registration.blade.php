@@ -37,6 +37,27 @@
                 Google already. If so and you don't want to change your name, let it be blank.</div>
         </div>
         <div class="mb-3">
+            <label for="birthdate" class="form-label">Birthday:</label>
+            <input type="date" id="birthdate" name="birthdate" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-check-label mb-1">
+                Gender
+            </label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="gender" value="M">
+                <label class="form-check-label" for="gender">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="gender_f" value="F">
+                <label class="form-check-label" for="gender_f">
+                    Female
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                 name="password">
@@ -57,7 +78,8 @@
             @enderror
         </div>
         {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-        <button class="g-recaptcha btn btn-primary" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}" data-callback='onSubmit'>Submit</button>
+        <button class="g-recaptcha btn btn-primary" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
+            data-callback='onSubmit'>Submit</button>
     </form>
 
     <script>

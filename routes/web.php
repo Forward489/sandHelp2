@@ -23,13 +23,11 @@ use Illuminate\Support\Facades\Auth;
 
 // Auth::routes(['verify'=>true]);
 
-Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);});
+Route::get('/landingPage', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
 
 Route::get('/testing', [TestingController::class, 'index'])->middleware('auth');
 
-Route::get('/payPal', function() {
-    return view('feature.payPal', ['title' => 'PayPal Testing']);
-})->middleware('auth');
+
 
 Route::get('/regisTest', function() {
     return view('account.registration2', ['title' => 'SandHelp-Register']);

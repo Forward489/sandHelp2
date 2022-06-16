@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('profile_picture')->nullable();
             $table->integer('points')->default(0);
+            $table->date('birthdate')->nullable();
+            $table->string('gender', 1)->nullable();
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->string('avatar')->nullable();

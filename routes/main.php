@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UpdateProfileController;
+use App\Http\Controllers\FeatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,12 @@ use App\Http\Controllers\UpdateProfileController;
 
 Route::get('/edit_profile', [UpdateProfileController::class, 'index'])->name('edit_profile')->middleware('auth');
 Route::post('/edit_profile', [UpdateProfileController::class, 'update'])->name('submit_edit')->middleware('auth');
+Route::get('/', [UpdateProfileController::class, 'landingPage'])->middleware('auth');
+
+// Route::get('/payPal', function() {
+//     return view('feature.payPal', ['title' => 'PayPal Testing']);
+// })->middleware('auth');
+Route::get('/payPal', [FeatureController::class, 'index'])->middleware('auth');
 
 
 

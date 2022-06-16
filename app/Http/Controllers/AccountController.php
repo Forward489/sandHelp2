@@ -37,7 +37,9 @@ class AccountController extends Controller
                     'email' => 'required|max:255|email:dns',
                     'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
                     'password_confirmation' => 'required',
-                    'g-recaptcha-response' => function($attribute, $value, $fail) {
+                    'gender' => 'required',
+                    'birthdate' => 'required|date_format:Y-m-d',
+                    'g-recaptcha-response' => function ($attribute, $value, $fail) {
                         $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                         $response = $value;
                         $userIP = $_SERVER['REMOTE_ADDR'];
@@ -45,7 +47,7 @@ class AccountController extends Controller
                         $response = file_get_contents($url);
                         $response = json_decode($response);
                         // dd($response);
-                        if(!$response->success) {
+                        if (!$response->success) {
                             return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
                             // $fail($attribute, 'Google Recaptcha failed to validate !');
                         }
@@ -59,12 +61,16 @@ class AccountController extends Controller
                 if ($validate['name'] == "") {
                     User::where('email', $request->email)->update([
                         'password' => $validate['password'],
+                        'gender' => $validate['gender'],
+                        'birthdate' => $validate['birthdate'],
                         'is_verified' => 1,
                     ]);
                 } else {
                     User::where('email', $request->email)->update([
                         'name' => $validate['name'],
                         'password' => $validate['password'],
+                        'gender' => $validate['gender'],
+                        'birthdate' => $validate['birthdate'],
                         'is_verified' => 1,
                     ]);
                 }
@@ -79,7 +85,9 @@ class AccountController extends Controller
                     'name' => 'required|max:255',
                     'email' => 'required|max:255|email:dns|unique:users',
                     'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
-                    'g-recaptcha-response' => function($attribute, $value, $fail) {
+                    'gender' => 'required',
+                    'birthdate' => 'required|date_format:Y-m-d',
+                    'g-recaptcha-response' => function ($attribute, $value, $fail) {
                         $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                         $response = $value;
                         $userIP = $_SERVER['REMOTE_ADDR'];
@@ -87,7 +95,7 @@ class AccountController extends Controller
                         $response = file_get_contents($url);
                         $response = json_decode($response);
                         // dd($response);
-                        if(!$response->success) {
+                        if (!$response->success) {
                             return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
                             // $fail($attribute, 'Google Recaptcha failed to validate !');
                         }
@@ -115,7 +123,7 @@ class AccountController extends Controller
             [
                 'email' => 'required',
                 'password' => 'required',
-                'g-recaptcha-response' => function($attribute, $value, $fail) {
+                'g-recaptcha-response' => function ($attribute, $value, $fail) {
                     $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                     $response = $value;
                     $userIP = $_SERVER['REMOTE_ADDR'];
@@ -123,7 +131,7 @@ class AccountController extends Controller
                     $response = file_get_contents($url);
                     $response = json_decode($response);
                     // dd($response);
-                    if(!$response->success) {
+                    if (!$response->success) {
                         return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
                         // $fail($attribute, 'Google Recaptcha failed to validate !');
                     }
@@ -184,7 +192,11 @@ class AccountController extends Controller
     {
         $user = Socialite::driver('google')->user();
         // dd($user);
+        $available = User::where('email', $user->email)->first();
         $this->createUpdateUser($user, 'google');
+        if (!$available) {
+            return redirect('/edit_profile');
+        }
         return redirect('/');
     }
 
@@ -206,6 +218,7 @@ class AccountController extends Controller
                 'provider' => $provider,
                 'provider_id' => $data->id,
                 'avatar' => $data->avatar,
+                'is_verified' => 1,
             ]);
         }
 
@@ -271,7 +284,7 @@ class AccountController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:users,email',
-            'g-recaptcha-response' => function($attribute, $value, $fail) {
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
                 $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                 $response = $value;
                 $userIP = $_SERVER['REMOTE_ADDR'];
@@ -279,7 +292,7 @@ class AccountController extends Controller
                 $response = file_get_contents($url);
                 $response = json_decode($response);
                 // dd($response);
-                if(!$response->success) {
+                if (!$response->success) {
                     return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
                     // $fail($attribute, 'Google Recaptcha failed to validate !');
                 }
