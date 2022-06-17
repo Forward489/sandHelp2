@@ -29,7 +29,7 @@ class UpdateProfileController extends Controller
         // dd($request);
         // dd($request->file('profile_picture'));
         $request->validate([
-            'description' => 'required|max:255',
+            'description' => 'max:255',
             'g-recaptcha-response' => function ($attribute, $value, $fail) {
                 $secretKey = env('GOOGLE_CAPTCHA_SECRET');
                 $response = $value;

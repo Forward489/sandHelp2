@@ -15,15 +15,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $glenn = array(
-            "email" => "glennstevencg21@gmail.com",
-            "password" => bcrypt('password'),
-            "points" => mt_rand(0, 1000),
-            "is_verified" => 1,
-            'name' => 'Glenn Steven Santoso'
-        );
-        User::create($glenn);
+        $glenn = [];
+
+        // $glenn = array(
+        //     "email" => "glennstevencg21@gmail.com",
+        //     "password" => bcrypt('password'),
+        //     "points" => mt_rand(0, 2000),
+        //     "is_verified" => 1,
+        //     'name' => 'Glenn Steven Santoso '
+        // );
+        for ($i = 1; $i < 21; $i++) {
+            $glenn[] = [
+                "email" => "glennstevencg21@gmail.com",
+                "password" => bcrypt('password'),
+                "points" => mt_rand(0, 2000),
+                "is_verified" => 1,
+                'name' => 'Glenn Steven Santoso '.$i
+            ];
+        }
+
+        for ($i = 0; $i < 1; $i++) {
+            User::create($glenn[$i]);
+        }
         User::factory(20)->create();
+        // User::factory(13)->create();
 
 
         // \App\Models\User::factory()->create([

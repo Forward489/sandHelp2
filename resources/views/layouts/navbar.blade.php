@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main_navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Navbar</a>
+        <a class="navbar-brand" href="/homePage">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
                 @guest
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(1) == '' ? 'active' : '' }}" aria-current="page"
-                            href="/landingPage">Home</a>
+                            href="/">Home</a>
                     </li>
                 @endguest
                 {{-- <li class="nav-item">
@@ -24,7 +24,7 @@
                 @auth
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(1) == '' ? 'active' : '' }}" aria-current="page"
-                            href="/">Home</a>
+                            href="/homePage">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(1) == 'payPal' ? 'active' : '' }}" href="/payPal">PayPal

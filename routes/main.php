@@ -27,7 +27,12 @@ use App\Http\Controllers\FeatureController;
 
 Route::get('/edit_profile', [UpdateProfileController::class, 'index'])->name('edit_profile')->middleware('auth');
 Route::post('/edit_profile', [UpdateProfileController::class, 'update'])->name('submit_edit')->middleware('auth');
-Route::get('/', [UpdateProfileController::class, 'landingPage'])->middleware('auth');
+Route::get('/homePage', [UpdateProfileController::class, 'landingPage'])->middleware('auth');
+
+Route::get('/result', [FeatureController::class, 'query'])->name('getTableResult');
+
+Route::post('/loadmore', [FeatureController::class, 'load_data'])->name('loadmore.load_data');
+Route::post('/loadmoreNames', [FeatureController::class, 'load_names'])->name('loadmore.load_names');
 
 // Route::get('/payPal', function() {
 //     return view('feature.payPal', ['title' => 'PayPal Testing']);

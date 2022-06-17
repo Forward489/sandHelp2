@@ -149,7 +149,7 @@ class AccountController extends Controller
             if ($verified) {
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    return redirect()->intended('/');
+                    return redirect()->intended('/homePage');
                 }
                 // else {
                 //     return back()->with('loginError', 'Login failed !');
@@ -197,7 +197,7 @@ class AccountController extends Controller
         if (!$available) {
             return redirect('/edit_profile');
         }
-        return redirect('/');
+        return redirect('/homePage');
     }
 
     private function createUpdateUser($data, $provider)
@@ -369,19 +369,5 @@ class AccountController extends Controller
         return back()->with('invalid', 'Invalid token !');
     }
 
-    // public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'email' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-    //     if (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('/mapping');
-    //     }
-
-    //     return back()->with('loginError', 'Login failed !');
-    // }
 
 }

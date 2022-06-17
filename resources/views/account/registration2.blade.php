@@ -51,10 +51,17 @@
             </div>
         </div>
         <div class="inputWrapper2 text-left" id="inputWrapper2">
+            <label for="gender" class="inputLabel font-weight-bold">Gender</label> <br>
+            <input type="radio" name="gender" value="M" class="mt-3" style=" accent-color: #c28400;">
+            <div class="mr-3"
+                style="display: inline;color:#c28400;font-weight: bold;">Male</div>
+            <input type="radio" name="gender" value="F" class="mt-3 ml-5" style=" accent-color: #c28400;">
+            <div style="display:inline;color:#c28400;font-weight:bold;">
+                Female</div>
+            <br>
             <div class="form-group">
                 <label for="password" class="inputLabel font-weight-bold">Password</label> <br>
-                <input type="password" name="password" id="password" placeholder="Type your password"
-                    class="inputBox">
+                <input type="password" name="password" id="password" placeholder="Type your password" class="inputBox">
                 @error('password')
                     <br>
                     <label for="password" class="inputLabel font-weight-light">{{ $message }}</label>
