@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Str;
 use DB;
+use Illuminate\Support\Facades\Hash;
 use Mail;
 
 use function PHPUnit\Framework\isNull;
@@ -367,6 +368,42 @@ class AccountController extends Controller
         }
 
         return back()->with('invalid', 'Invalid token !');
+    }
+
+    public function changePasswordIndex() {
+        return view('account.changePassword', ['title' => 'Change Password']);
+    }
+
+    public function changePassword(Request $request) {
+        $update_password = $request->validate([
+            'old_password' => 'required|min:8',
+            'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
+            'password_confirmation' => 'required',
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                $secretKey = env('GOOGLE_CAPTCHA_SECRET');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                $response = file_get_contents($url);
+                $response = json_decode($response);
+                // dd($response);
+                if (!$response->success) {
+                    return back()->with('google_captcha_error', 'Google Captcha failed to validate !');
+                    // $fail($attribute, 'Google Recaptcha failed to validate !');
+                }
+            },
+        ]);
+
+        $old_password = auth()->user()->password;
+
+        if(Hash::check($update_password['old_password'], $old_password)) {
+            User::where('email', $request->email)->update([
+                'password' => Hash::make($update_password['password']),
+            ]);
+            return redirect()->route('edit_profile')->with('password_updated','Password successfully updated !');
+        }
+
+        return back()->with('password_not_match', 'Your old password doesn\'t match');
     }
 
 

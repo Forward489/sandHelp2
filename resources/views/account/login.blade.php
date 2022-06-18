@@ -70,6 +70,8 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                 name="password">
+            <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
+                password</button>
             @error('password')
                 <div class="invalid-feedback">
                     {{ $message }}

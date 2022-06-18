@@ -26,6 +26,8 @@
             <label for="password" class="form-label">New Password</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                 name="password">
+            <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
+                password</button>
             @error('password')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -36,6 +38,8 @@
             <label for="password_confirmation" class="form-label">New Password Confirm</label>
             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                 id="password_confirmation" name="password_confirmation">
+            <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
+                password</button>
             @error('password_confirmation')
                 <div class="invalid-feedback">
                     {{ $message }}

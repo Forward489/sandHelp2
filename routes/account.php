@@ -25,4 +25,8 @@ Route::post('/login/password_reset/', [AccountController::class, 'resetPasswordC
 
 Route::get('/authenticate/{token}', [AccountController::class, 'emailVerification'])->name('emailVer');
 Route::post('/authenticate', [AccountController::class, 'emailVerificationControl'])->name('emailVerControl');
+
+Route::get('/change_password', [AccountController::class, 'changePasswordIndex']);
+Route::post('/change_password', [AccountController::class, 'changePassword'])
+;
 ?>

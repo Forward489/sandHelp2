@@ -6,6 +6,11 @@
             {{ session('updated') }}
         </div>
     @endif
+    @if (session()->has('password_updated'))
+        <div class="alert alert-primary" role="alert">
+            {{ session('password_updated') }}
+        </div>
+    @endif
     {{-- <h2>This is the update profile page</h2> --}}
     <form action="{{ route('submit_edit') }}" method="post" id="demo-form" enctype="multipart/form-data">
         @csrf
@@ -107,6 +112,8 @@
                 @enderror
             </div>
         @endif
+
+        <a href="/account/change_password" class="btn btn-primary mb-2">Change password</a>
         {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
         <button class="g-recaptcha btn btn-primary" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
             data-callback='onSubmit'>Submit</button>

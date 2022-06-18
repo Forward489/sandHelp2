@@ -26,8 +26,8 @@
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Full name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}"
-                name="name">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                value="{{ old('name') }}" name="name">
             @error('name')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -61,6 +61,8 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                 name="password">
+            <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
+                password</button>
             @error('password')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -71,6 +73,8 @@
             <label for="password_confirmation" class="form-label">Password Confirm</label>
             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                 id="password_confirmation" name="password_confirmation">
+            <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
+                password</button>
             @error('password_confirmation')
                 <div class="invalid-feedback">
                     {{ $message }}
