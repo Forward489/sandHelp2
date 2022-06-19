@@ -27,44 +27,8 @@
     </style>
     <h2>My Map</h2>
     <div id="map" class="map"></div>
-    <script type="text/javascript">
-        var map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                })
-            ],
-            // view: new ol.View({
-            //     center: ol.proj.fromLonLat([-8.409518, 115.188919]),
-            //     zoom: 4
-            // })
-            view: new ol.View({
-                // center: ol.proj.fromLonLat([37.41, 8.82]),
-                center: ol.proj.fromLonLat([115.188919, -8.409518]),
-                zoom: 9.3
-            })
-        });
-
-        var marker = new ol.Feature({
-            geometry: new ol.geom.Point([-8.719266, 115.168640]),
-            type: 'beach',
-            name: 'test beach'
-        });
-        var marker2 = new ol.Feature({
-            geometry: new ol.geom.Point([8.8453, 115.1871]),
-            type: 'beach',
-            name: 'test beach 2'
-        });
-
-        var vectorLayer = new ol.layer.Vector({
-            title: 'beaches',
-            source: new ol.source.Vector({
-                features: [marker, marker2]
-            })
-        });
-        map.addLayer(vectorLayer);
-    </script>
+    <script src="Scripts/map.js"></script>
+    <script src="v6.14.1-dist/ol.js"></script>
     {{-- <script type="text/javascript">
         var map = new ol.Map({
             target: 'map',
@@ -190,23 +154,6 @@
                 }
             });
         }
-
-        function ajaks(name = '') {
-            // alert(name);
-            $.ajax({
-                url: "{{ route('getTableResult') }}",
-                method: 'GET',
-                data: {
-                    query: name
-                },
-                dataType: 'json',
-                success: function(data) {
-                    // alert(data.table_button);
-                    $('#result').html(data.table_data);
-                }
-            });
-        }
-
 
         function loadData(points = "", _token) {
             $.ajax({
