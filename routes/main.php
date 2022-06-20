@@ -38,6 +38,7 @@ Route::post('/loadmoreNames', [FeatureController::class, 'load_names'])->name('l
 //     return view('feature.payPal', ['title' => 'PayPal Testing']);
 // })->middleware('auth');
 Route::get('/payPal', [FeatureController::class, 'index'])->middleware('auth');
+Route::post('/payPal', [FeatureController::class, 'payPalPayment'])->name('payPal.post')->middleware('auth');
 
 
 

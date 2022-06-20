@@ -95,66 +95,6 @@ class FeatureController extends Controller
 
             echo json_encode($result);
         }
-
-
-        // if ($request->ajax()) {
-        //     $search = $request->get('query');
-        //     // $cat_id = DB::table('categories')->select('id')->where('category', $request)->get();
-        //     if ($search != '') {
-        //         // $data = FullLocation::where('categories_id', $cat_id)->get();
-        //         $data = FullLocation::where('categories_id', function ($query) use ($search) {
-        //             $query->select('id')->from(with(new Categories)->getTable())->where('category', $search);
-        //         })->get();
-        //     } else {
-        //         $data = FullLocation::with(['categories', 'countries'])->get();
-        //     }
-        //     $output = '';
-        //     $data_category = '';
-        //     if ($data->count() > 0) {
-        //         // $output .= '<div class="result-'.$data->categories->category.'">';
-        //         // @dd($data);
-        //         foreach ($data as $data) {
-        //             $id_Data = $data->categories->category;
-
-        //             if (strpos($id_Data, " ")) {
-        //                 $id_Data = str_replace(' ', '_', $id_Data);
-        //             }
-
-        //             $output .= '<div class="col" id="result-' . $id_Data . '">';
-        //             $output .= '<div class="result-' . $data->categories->category . '">';
-        //             $output .= '<h5>' . $data->id . '</h5>
-        //             <h5>' . $data->categories->category . '</h5>
-        //             <h5>' . $data->categories->categoryDivisions->big_category . '</h5>
-        //             <h5 class="mb-5">' . $data->countries->country . '</h5>';
-        //             $output .= '</div>';
-        //             $output .= '</div>';
-
-        //             // $temp_id = explode(" ", $data->categories->categoryDivisions->big_category);
-        //             $temp_id = $data->categories->categoryDivisions->big_category;
-
-        //             if (strpos($temp_id, " ")) {
-        //                 $temp_id = str_replace(' ', '_', $temp_id);
-        //             }
-        //             // $id = '';
-        //             // for ($i = 0; $i < count($temp_id) - 1; $i++) {
-        //             //     $id .= $temp_id[$i] . "_";
-        //             // }
-        //             // $id .= end($temp_id);
-        //             $data_category = $temp_id;
-        //         }t
-        //     } else {
-        //         $output .= '<div class="col" id="result-' . $search . '">';
-        //         $output .= '<div class="result-' . $search . '">';
-        //         $output .= "<h5>No data found on $search</h5>";
-        //         $output .= '</div>';
-        //         $output .= '</div>';
-        //     }
-        //     $data = array(
-        //         'table_data' => $output,
-        //         'data_category' => $data_category
-        //     );
-        //     echo json_encode($data);
-        // }
     }
     public function load_data(Request $request)
     {
@@ -216,10 +156,10 @@ class FeatureController extends Controller
                 </div>
                 ';
             }
+            echo $output;
         }
-
         // $json = array('table_data' => $output);
-        echo $output;
+        
     }
 
     public function load_names(Request $request)
@@ -296,5 +236,24 @@ class FeatureController extends Controller
 
         // $json = array('table_data' => $output);
         // echo $output;
+    }
+
+    public function payPalPayment(Request $request) {
+        if($request->ajax()) {
+            $points = $request->amount;
+            // $points = (double)$request->amount;
+
+            $points = $points / 5000 * 100;
+
+            $user_point = User::where('email', auth()->user()->email)->first();
+
+            $points += $user_point->points;
+
+            User::where('email', auth()->user()->email)->update([
+                'points' => $points,
+            ]);
+
+            echo "Donation successfully made !";
+        }
     }
 }

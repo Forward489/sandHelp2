@@ -10,6 +10,8 @@
 }
 
 
+
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -219,9 +221,6 @@ html {
 }
 
 
-#btnKg:hover {
-    background-color: #dab77b;
-}
 
 
 #btnSubmit {
@@ -230,9 +229,10 @@ html {
     height: 5.5vh;
     border-radius: 30px;
     border: 0.5px solid #e9cea0;
-    background-color: #dcbe89;
+    background-color: #c28400;
     font-weight: bold;
     font-size: large;
+    
 }
 
 #btnSubmit:hover {
@@ -242,6 +242,7 @@ html {
 
 
 #donationCard {
+    transform: scale(1.0);
     margin-top: -10vh;
     align-self: center;
     width: 60%;
@@ -252,6 +253,7 @@ html {
 }
 
 #donationCard2 {
+    transform: scale(1.0);
     margin-top: -10vh;
     align-self: center;
     width: 60%;
@@ -264,12 +266,14 @@ html {
 
 @media only screen and (max-width: 600px) {
     #donationCard {
+        transform: scale(1.0);
         width: 100%;
-        margin-top: 0;
+        margin-top: -10vh;
     }
     #donationCard2 {
+        transform: scale(1.0);
         width: 100%;
-        margin-top: 0;
+        margin-top: -10vh;
     }
     #btnKg{
         width: 80%;
@@ -288,18 +292,20 @@ html {
 }
 
 #areaDonasi {
+    background-image: url(/Images/bottom_background.png),linear-gradient(to bottom,white , #fdf1d6);
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    background-position: bottom;
 
-    background-image: linear-gradient(to bottom,white , #fdf1d6);
+    z-index: 1;
+
 }
 
-
-
-@media only screen and (max-width: 600px) {
-    #areaDonasi {
-
-    }
+.map-container{
+    width: 60%;
+    margin-left: 20%;
+    padding-bottom: 20vh;
 }
-
 
 #amountDonation {
     border-radius: 8px;
@@ -408,8 +414,8 @@ option:hover{
     border: none;
     padding-left: 50px;
     padding-right: 50px;
-    width: 13vw;
-    height: 4vh;
+    width: 15vw;
+    height: 5vh;
     background-color: rgb(255, 255, 255);
     border-radius: 100px;
     font-weight: bold;
@@ -422,8 +428,8 @@ option:hover{
     border: none;
     padding-left: 50px;
     padding-right: 50px;
-    width: 13vw;
-    height: 4vh;
+    width: 15vw;
+    height: 5vh;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 100px;
     font-weight: bold;
@@ -432,6 +438,7 @@ option:hover{
  }
 
 .search{
+    
     background-color: white;
     width: max-content;
     border-radius: 100px;
@@ -440,23 +447,20 @@ option:hover{
 
 
 .search input{
+    height: 6vh;
     background-color: white;
     border: none;
+    border: none;
+    border-radius: 100px;
+    background: none;
+    width: 28vw;
+    padding-left: 15px;
+
 }
 
 .search input:focus{
     background:white;
     color: #c28400;
-}
-
-
-input{
-    border: none;
-    border-radius: 100px;
-    background: none;
-    width: 24vw;
-    padding-left: 15px;
-    height: 35px;
 }
 .search button{
     padding-right: 15px;
@@ -468,25 +472,51 @@ input{
 
 .container-leaderboard{
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.247);
+    background-image: linear-gradient(to bottom,white , #fdf1d6);
     border-radius: 10px;
     width: 40vw;
     margin-top: 8%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
 #badge{
-    position: relative;
-    height: 100px;
-    margin-left:-90px;
-    
+    width: 70px;
+    margin-left: -35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .block-text-leaderboard{
+    display: inline-block;
     margin-top: 23px;
-    position: absolute;
+    vertical-align: middle;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    width: 25vw;
+}
+
+.block-text-right-leaderboard{
+    background-color: #c28400;
+    position:absolute;
+    display: inline;
+    vertical-align: middle;
+    padding: 10px;
+    padding-bottom: 0;
+    right: 8vw;
+    border-radius: 100px;
+    width: 6vw;
+}
+
+.leaderboard-amount{
+    font-size: large;
+    color: white;
+    font-weight: bold;
 }
 
 #nama-leaderboard{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -497,6 +527,68 @@ input{
 
 .timestamp{
     font-size: 10px;
+}
+
+#bottom_background{
+    height: auto;
+    width: 100vw;
+}
+
+.separator{
+    margin-top: -1vh;
+    width: 100vw;
+    height: 10vh;
+    background-color: #e0c796;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: 0;
+    margin-bottom: 10vh;
+}
+
+.location-container{
+    background: linear-gradient(to bottom,white , #ffcf5f);
+}
+
+#map-image{
+    width: 90vw;
+    margin-bottom: 10vh;
+}
+
+.project-location-title{
+    font-weight: bold;
+    font-family: 'ZonaProUltra', sans-serif; 
+    padding-top:15vh;
+    padding-bottom: 10vh;
+    width: 50vw;
+}
+
+#map {
+    min-height: 150px;
+    min-width: 150px;
+    height: 600px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #dab77b;
+}
+
+#map .infoTitle {
+    /*marker window title styles*/
+}
+
+#map .infoWebsite {
+    /*marker window website styles*/
+}
+
+#map .infoEmail {
+    /*marker window email address styles*/
+}
+
+#map .infoTelephone {
+    /*marker window telephone styles*/
+}
+
+#map .infoDescription {
+    /*marker window description styles*/
 }
 
 
@@ -519,33 +611,147 @@ input{
     }
 
     #badge{
-        height: 50px;
-        margin-left: 0%;
-        margin-top: -20px;
+        margin-left: 15px;
+        width: 50px;
+    }
+
+
+    .leaderboard-body{
+       margin-bottom: 0px;
     }
 
     .container-leaderboard{
+        
         width: 95vw;
-        height: fit-content
+        height: 10vh;
     }
 
     .block-text-leaderboard{
+        
+        padding-left: 20px;
+        margin-bottom: 15px;
         position: relative;
+        width: 50vw;
+    }
+
+    .block-text-right-leaderboard{
+        width: 20vw;
+        right: 3vw;
+    }
+
+
+    .project-location-title{
+        width: 90vw;
     }
 
     #nama-leaderboard{
-        font-size: smaller;
+        font-size: small;
 
     }
     
     #pesan-leaderboard{
-        font-size: smaller;
+        font-size: small;
 
     }
 
+    .leaderboard-amount{
+        font-size: smaller;
+    }
+
+    #areaDonasi{
+        background-size: 200vh;
+    }
+    .map-container{
+        margin-left: 0;
+        width: 100%;
+    }
 }
 
 /* Leaderboard end */
 
 
+
+@media (min-width:641px) and (max-width:1000px) {
+    #areaDonasi{
+        margin-top: -0.5vh;
+    }
+
+    #totalDonation{
+        margin-top: 30px;
+        font-size: 40px;
+    }
+
+    #currentProgress{
+        font-size: 80px;
+    }
+
+    #donationCard , #donationCard2{
+        margin-left: -50vw;
+        width: 120%;
+    }
+
+    .leaderboard-image{
+        width: 50vw;
+        transform:  scale(2.0);
+    }
+
+    .search input{
+        width: 70vw;
+    }
+
+    .search button{
+        display: none;
+    }
+
+    #areaDonasi{
+        background-size: 200vh;
+    }
+    
+
+    .container-leaderboard{
+        width: 70vw;
+    }
+
+    #backgroundSwitch{
+        margin-left: -13vw;
+    }
+
+    .project-location-title{
+        width: 90vw;
+    }
+
+    #switchInner1{
+        width: 35vw;
+
+    }
+    #switchInner2{
+        width: 35vw;
+    }
+
+    .block-text-leaderboard{
+        width: 50vw;
+        
+    }
+
+    #pesan-leaderboard{
+        font-size: 14px;
+    }
+
+    .block-text-right-leaderboard{
+        width: 150px;
+        margin-right: -15vw;
+    }
+
+    .location-container{
+        margin-top: -0.3vh;
+    }
+
+    .separator{
+        margin-top: -0.5vh;
+    }
+    .map-container{
+        margin-left: 10vw;
+        width: 80vw;
+    }
+ }
 

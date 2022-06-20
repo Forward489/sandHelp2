@@ -1,0 +1,261 @@
+input:focus {
+    outline: none;
+    color: #dcbe89;
+}
+
+input:focus::placeholder {
+}
+
+input[type="file"]{
+    display: none;
+}
+
+input{
+    color: #d1a456;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-weight: normal;
+    color: #e2ac4d;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-weight: normal;
+    color: #e2ac4d;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    font-weight: normal;
+    color: #e2ac4d;
+  }
+
+/* Video settings */
+#video-container {
+    padding-top: 100px;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 120vh;
+}
+
+body {
+    position: relative;
+  }
+  
+
+@media only screen and (max-width: 600px) {
+    #video-container {
+        height: max-content;
+    }
+
+}
+
+.video_beach {
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    width: 105vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    .video_beach {
+        width: 103vw;
+        height: 120vh;
+    }
+
+}
+/* Video settings end */
+
+.layer{
+    width: 103vw;
+    height: 103vh;
+    z-index: -1;
+    top: 0%;
+    position: fixed;
+    background-color: rgba(70, 70, 70, 0.295);
+    
+}
+
+
+.profile-card{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    width: 40%;
+    margin-left: 30%;
+    background:linear-gradient(to bottom, #fae4bf, white);
+    border-radius: 10px;
+}
+
+.profile-header{
+
+    padding-bottom: 10px;
+    /* border-bottom: 3px solid #c28400;
+    border-left: 3px solid #c28400;
+    border-top: 3px solid #c28400;
+    border-right: 3px solid #c28400; */
+}
+
+.settings-wrapper{
+    padding-top: 20px;
+}
+
+.settings-wrapper a i{
+    color: #c28400;
+}
+.settings-wrapper a i:hover{
+    color: #ad7600;
+}
+
+.profile-photo{
+    margin-top: 20px;
+    width: 165px;
+    height: 165px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+  
+
+.name{
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.email{
+    font-style: italic;
+}
+
+.profile-body{
+    border-bottom-left-radius:10px ;
+    border-bottom-right-radius: 10px;
+    /* border-bottom: 3px solid #c28400;
+    border-left: 3px solid #c28400;
+    border-right: 3px solid #c28400; */
+}
+
+.points{
+    font-size: 20px;
+}
+
+.footer{
+    position: absolute; 
+    bottom:0; 
+    width:100vw;
+}
+
+.logo{
+    padding-top:25px; 
+    padding-bottom:25px;
+    width:400px;
+}
+
+body::after{
+    content: '';
+    display: block;
+    height: 20vh; /* Set same as footer's height */
+}
+
+.inputLabel{
+    margin-top: 30px;
+    margin-bottom: -100px;
+    font-weight: bold;
+    color: #c28400;
+}
+
+.inputBox{
+    padding-top: 5px;
+    width: 30vh;
+    border: 0px;
+    border-bottom: 1px solid #c285006e;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.custom-file-upload:hover{
+    color: #9e6d02;
+    text-decoration: underline;
+}
+
+.change{
+    width: 40%;
+    margin-left: 30%;
+    color: white;
+    margin-top: 15px;
+    height: 6vh;
+    border-radius: 30px;
+    border: 0.5px solid #e9cea0;
+    background-color: #c28400;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 40px;
+}
+
+.change:hover{
+    background-color: #dab77b;
+}
+
+@media only screen and (max-width: 600px) {
+    body{
+        background-color: #ffcc5e;
+        position: relative;
+    }
+
+    .profile-card{
+        margin-left: 5vw;
+        width: 90vw;
+    }
+
+    .photo-container{
+        margin-left: 25%;
+        width: 50%;
+    }
+
+    .name{
+        font-size: 20px;
+    }
+
+    .logo{
+        width: 250px;
+    }
+
+    body{
+        background-color: #ffcc5e;
+        position: relative;
+    }
+
+    body::after{
+        content: '';
+        display: block;
+        height: 25vh; /* Set same as footer's height */
+    }
+
+}
+
+
+@media (min-width:641px) and (max-width:1000px) {
+    .profile-card{
+        margin-left: 10%;
+        width: 80%;
+        margin-bottom: 20%;
+    }
+    .video_beach{
+        width: 103vw;
+        height: 103vh;
+    }
+
+
+    body{
+        background-color: #ffcc5e;
+        position: relative;
+    }
+
+    body::after{
+        content: '';
+        display: block;
+        height: 28vh; /* Set same as footer's height */
+    }
+
+}

@@ -1,0 +1,106 @@
+/* Video settings */
+#video-container {
+    padding-top: 100px;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 120vh;
+}
+
+@media only screen and (max-width: 600px) {
+    #video-container {
+        height: max-content;
+    }
+
+}
+
+.video_beach {
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    width: 100%;
+    height: max-content;
+    object-fit: cover;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    .video_beach {
+        width: 100%;
+        height: 120vh;
+    }
+
+}
+/* Video settings end */
+
+.card-container{
+    background:linear-gradient(to bottom, #fae4bf, white);
+    width: 30%;
+    margin-left: 35%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 4%;
+    border-radius:10px;
+}
+
+.title{
+    margin-top: 15px;
+}
+
+.layer{
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    top: 0%;
+    position: fixed;
+    background-color: rgba(70, 70, 70, 0.295);   
+}
+
+.button-redirect{
+    width: 250px;
+    color: white;
+    margin-top: 50px;
+    height: 6vh;
+    border-radius: 30px;
+    border: 0.5px solid #e9cea0;
+    background-color: #c28400;
+    font-weight: bold;
+    font-size: large;
+    
+}
+
+.button-redirect:hover{
+    background-color: #dab77b;
+}
+
+.icon{
+    width: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+    .card-container{
+        margin-left: 5%;
+        width: 90%;
+        height: 50%;
+        margin-top: 20%;
+    }
+    .icon{
+        width: 150px;
+    }
+    .title{
+        font-size: 20px;
+    }
+
+}
+
+@media (min-width:641px) and (max-width:1000px) {
+    .card-container{
+        margin-top: 13vh;
+        margin-left: 20%;
+        width: 60%;
+    }
+
+    .video_beach{
+        height: 100vh;
+    }
+
+}

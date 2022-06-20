@@ -7,12 +7,8 @@ input:focus::placeholder {
 }
 
 input{
-    color: #dcbe89;
+    color: #d1a456;
 }
-
-
-
-
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     font-weight: normal;
@@ -112,12 +108,12 @@ html{
 
 @media only screen and (min-width: 1920px) {
     html{
-        overflow: hidden;
     }
 }
 
 body{
     font-family: "Poppins",sans-serif;
+    background-color: #ffcc5e;
 }
 .welcome{
     font-weight: bolder;
@@ -258,6 +254,13 @@ a:hover{
     color: #a57101;
 }
 
+#see_password{
+    color: #c28400;
+}
+#see_password:hover{
+    color: #d18c15;
+}
+
 @media only screen and (max-width: 600px) {
 
     #video-container{
@@ -313,4 +316,28 @@ a:hover{
     #mobile-ruiner{
         display: none;
     }
+}
+
+@media (min-width:641px) and (max-width:1000px) {
+    body{
+        background-color: #ffcc5e;
+        overflow: hidden;
+
+    }
+
+    #video-container{
+
+    }
+
+    .video_beach{
+        height: 100vh;
+        width: 100vw;
+    }
+    .login-card ,.forgot-card{
+        margin-top: 3vh;
+        margin-left: -40vw;
+        width: 180%;
+        font-size:130%;
+    }
+
 }

@@ -21,16 +21,30 @@
     <link rel="stylesheet" href="/stylesheets/accountHandling.css">
     <link rel="icon" type="image/png" href="/Images/favicon.png">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js">
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+
+    <script src="/node_modules/wowjs/dist/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
     <script src="/Scripts/includeHtml.js"></script>
     <script src="/Scripts/changeBackground.js"></script>
+    <script src="/Scripts/preloader.js"></script>
 
     <title>SandHelp-Register</title>
 </head>
 
 <div style="overflow-x:hidden">
 
-    <body class="" style="" onload="changeBackground('no_logo'),includeHTML();">
-        <div w3-include-html="/htmls/popup.html"></div>
+    <body class="wow fadeIn" style="" onload="changeBackground('no_logo'),includeHTML();">
+        <div w3-include-html="/htmls/popup.html" style=""></div>
+        <!-- <div w3-include-html="/htmls/preloader.html"></div> -->
         <div class="video-container">
             <!-- Video Background -->
             <video autoplay muted loop class="video_beach" id="player">
@@ -39,7 +53,7 @@
             <!-- Video Background End -->
 
             <div class="layer">
-                
+
             </div>
 
             <div class="row text-center login-card " style="">
@@ -60,10 +74,12 @@
                         <div class="inputWrapper1 text-left" id="inputWrapper1">
                             <div class="form-group">
                                 <label for="nama_lengkap" class="inputLabel font-weight-bold">Full Name</label> <br>
-                                <input type="text" name="full_name" id="" placeholder="Type your full name" class="inputBox">
+                                <input type="text" name="full_name" id="" placeholder="Type your full name"
+                                    class="inputBox">
                                 <br>
                                 <label for="email" class="inputLabel font-weight-bold pt-2">Email</label><br>
-                                <input type="email" name="email" id="" placeholder="Type your email" class="inputBox"><br>
+                                <input type="email" name="email" id="" placeholder="Type your email"
+                                    class="inputBox"><br>
                                 <br>
                                 <div class="text-center pt-3">
                                     <button class="next" type="button" onclick="next()">
@@ -74,25 +90,54 @@
                         </div>
                         <div class="inputWrapper2 text-left" id="inputWrapper2">
                             <div class="form-group">
+                                <label for="birthday" class="inputLabel font-weight-bold">Date of Birth</label> <br>
+                                <input type="date" name="birthday" id="birthday" placeholder="" class="inputBox"
+                                    style="">
+                                <br>
+                                <label for="gender" class="inputLabel font-weight-bold">Gender</label> <br>
+                                <input type="radio" name="gender" value="male" class="mt-3"
+                                    style=" accent-color: #c28400;">
+                                <div class="mr-3" style="display: inline;
+                                color:#c28400;
+                                font-weight: bold;
+                                ">Male</div>
+                                <input type="radio" name="gender" value="female" class="mt-3 ml-5"
+                                    style=" accent-color: #c28400;">
+                                <div style="display:inline;
+                                color:#c28400;
+                                font-weight:bold;
+                                ">Female</div>
+                                <br>
                                 <label for="password" class="inputLabel font-weight-bold">Password</label> <br>
-                                <input type="password" name="password" id="password" placeholder="Type your password" class="inputBox">
-                                <br>
-                                <label for="confirm_password" class="inputLabel font-weight-bold pt-2">Confirm Password</label><br>
-                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password" class="inputBox"><br>
-                                <div class="text-right pt-3">
+                                <div>
+                                    <input type="password" name="password" id="password"
+                                        placeholder="Type your password" class="inputBox">
+                                    <i class="fa fa-eye-slash" id="see_password" aria-hidden="true"
+                                        data-is_password=true></i>
                                 </div>
+
                                 <br>
-                                <div class="text-center pt-3">
+                                <label for="confirm_password" class="inputLabel font-weight-bold pt-2">Confirm
+                                    Password</label><br>
+                                <div>
+                                    <input type="password" name="confirm-password" id="confirm-password"
+                                        placeholder="Confirm your password" class="inputBox">
+                                    <i class="fa fa-eye-slash" id="see_password" aria-hidden="true"
+                                        data-is_password=true></i>
+                                </div>
+
+                                <br>
+                                <div class="text-center">
                                     <input type="submit" name="" id="" class="register" value="Register now">
                                 </div>
                                 <div class="text-center pt-3">
                                     <a onclick="previous()" class="text-center" style="color: #c28400">Previous</a>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </form>
-                    
+
                     <div class="or">
                         <hr>
                         <p>or</p>
@@ -115,15 +160,29 @@
 <script>
     page1 = document.getElementById("inputWrapper1");
     page2 = document.getElementById("inputWrapper2");
-    function next(){
+    function next() {
         page1.style.display = "none";
         page2.style.display = "flex";
     }
 
-    function previous(){
+    function previous() {
         page2.style.display = "none";
         page1.style.display = "flex";
     }
+
+    $(document).ready(function () {
+        //id sesuaiin kebutuhan
+        $(document).on('click', '#see_password', function () {
+            if ($(this).data('is_password')) {
+                $(this).parent().find('input[type=password]').attr('type', 'text');
+                $(this).data('is_password', false)
+            } else {
+                $(this).parent().find('input[type=text]').attr('type', 'password');
+                $(this).data('is_password', true)
+            }
+            $(this).toggleClass('fa-eye fa-eye-slash')
+        })
+    });
 </script>
 
 </html>

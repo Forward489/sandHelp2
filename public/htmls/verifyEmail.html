@@ -21,6 +21,19 @@
     <link rel="stylesheet" href="/stylesheets/accountHandling.css">
     <link rel="icon" type="image/png" href="/Images/favicon.png">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js">
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+
+    <script src="/node_modules/wowjs/dist/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <script src="/Scripts/preloader.js"></script>
     <script src="/Scripts/includeHtml.js"></script>
     <script src="/Scripts/changeBackground.js"></script>
 
@@ -29,7 +42,8 @@
 
 <div style="overflow-x:hidden">
 
-    <body class="" style="" onload="changeBackground('no_logo')">
+    <body class="wow fadeIn" style="" onload="changeBackground('no_logo')">
+        <!-- <div w3-include-html="/htmls/preloader.html"></div> -->
         <div class="video-container">
             <!-- Video Background -->
             <video autoplay muted loop class="video_beach" id="player">
@@ -42,7 +56,7 @@
             </div>
 
 
-            <div class="row text-center login-card " style="">
+            <div class="row text-center login-card " style="top:10vh;position:absolute">
                 <div class="col-md-4" id="mobile-ruiner">
 
                 </div>

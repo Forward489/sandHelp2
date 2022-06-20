@@ -371,7 +371,12 @@ class AccountController extends Controller
     }
 
     public function changePasswordIndex() {
-        return view('account.changePassword', ['title' => 'Change Password']);
+        $check = User::where('email', auth()->user()->email)->first();
+        if (!$check->password) {
+            return view('main.change_profile', ['title' => 'Change Profile']);
+        } else {
+            return view('account.changePassword', ['title' => 'Change Password']);
+        }
     }
 
     public function changePassword(Request $request) {
