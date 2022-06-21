@@ -106,9 +106,17 @@
 
                                     <hr>
                                     {{-- <input type="submit" value="Pay" id="btnSubmit" style="width: 100%;"> --}}
-                                    <div class="pepal">
-                                        <div id="paypal-button-container" style="max-width: 100%;"></div>
-                                    </div>
+                                    @guest
+                                        <a href="{{ route('login_trial') }}" class="text-decoration-none text-white">
+                                            <button type="button" value="" id="btnSubmit"
+                                                style="width: 100%;">Pay</button>
+                                        </a>
+                                    @endguest
+                                    @auth
+                                        <div class="pepal">
+                                            <div id="paypal-button-container" style="max-width: 100%;"></div>
+                                        </div>
+                                    @endauth
                                     <div class="text-center mt-3">
                                         <a onclick="" id="previousCard">Previous</a>
                                     </div>
@@ -121,11 +129,11 @@
                                                 src="https://www.paypal.com/sdk/js?client-id=AWeEpkof-DJakIyEMwnJk8S00pRZvt6JBJSFvuG3ufOu24fLJQiXeQGxiKOwSdBSen6dkZmsgKeim2ZY&currency=USD">
                         </script>
                         {{ csrf_field() }}
-                        
+
                         <script>
                             $(document).ready(function() {
                                 var final = 0;
-                                
+
                                 paypal.Buttons({
                                     // Sets up the transaction when a payment button is clicked
                                     createOrder: (data, actions) => {
@@ -133,13 +141,13 @@
                                             purchase_units: [{
                                                 amount: {
                                                     // value: '77.44' // Can also reference a variable or function
-                                                    value: getTotalDonationDollar()// Can also reference a variable or function
+                                                    value: getTotalDonationDollar() // Can also reference a variable or function
                                                 }
                                             }]
                                         });
                                     },
 
-                                    
+
                                     // Finalize the transaction after payer approval
                                     onApprove: (data, actions) => {
                                         return actions.order.capture().then(function(orderData) {
@@ -165,7 +173,7 @@
                                 })
 
                                 // $('#paypal-button-container').click(function() {
-                                    
+
                                 // });
 
 

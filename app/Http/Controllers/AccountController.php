@@ -19,12 +19,14 @@ class AccountController extends Controller
 {
     public function login()
     {
-        return view('account.login', ['title' => 'Login Page']);
+        // return view('account.login', ['title' => 'Login Page']);
+        return view('testing.account.login', ['title' => 'SandHelp-Login']);
     }
 
     public function registration()
     {
-        return view('account.registration', ['title' => 'Registration Page']);
+        // return view('account.registration', ['title' => 'Registration Page']);
+        return view('testing.account.forgot_password_index', ['title' => 'SandHelp-Login']);
     }
 
     public function store(Request $request)
@@ -75,7 +77,8 @@ class AccountController extends Controller
                         'is_verified' => 1,
                     ]);
                 }
-                return redirect('/account/login')->with('success', 'You are now registered in our website !');
+                // return redirect('/account/login')->with('success', 'You are now registered in our website !');
+                return redirect()->route('login_trial')->with('success', 'You are now registered in our website !');
             } else {
                 return back()->with('existing_alert', 'Existing e-mail already used in this site');
             }
@@ -109,7 +112,8 @@ class AccountController extends Controller
             User::create($validate);
 
             $this->sendVerifyEmail($request->email);
-            return redirect('/account/login')->with('success', 'You have been registered in our website don\'t forget to verify your e-mail to access our website!');
+            // return redirect('/account/login')->with('success', 'You have been registered in our website don\'t forget to verify your e-mail to access our website!');
+            return redirect()->route('login_trial')->with('success', 'You have been registered in our website don\'t forget to verify your e-mail to access our website!');
         }
         // return redirect('/auth');
     }
@@ -150,7 +154,7 @@ class AccountController extends Controller
             if ($verified) {
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    return redirect()->intended('/homePage');
+                    return redirect()->route('landing_testing');
                 }
                 // else {
                 //     return back()->with('loginError', 'Login failed !');
@@ -181,7 +185,8 @@ class AccountController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/account/login')->with('logged out', 'Logged out successfully');
+        // return redirect('/account/login')->with('logged out', 'Logged out successfully');
+        return redirect()->route('login_trial')->with('logged out', 'Logged out successfully');
     }
 
     public function googleLoginRedirect()
@@ -198,7 +203,8 @@ class AccountController extends Controller
         if (!$available) {
             return redirect('/edit_profile');
         }
-        return redirect('/homePage');
+        // return redirect('/homePage');
+        return redirect()->route('landing_testing');
     }
 
     private function createUpdateUser($data, $provider)
@@ -252,7 +258,7 @@ class AccountController extends Controller
 
     public function emailVerification(Request $request, $token = NULL)
     {
-        return view('account.email_verification', ['title' => 'Verify E-mail', 'token' => $token, 'email' => $request->email]);
+        return view('testing.account.email_verification', ['title' => 'Verify E-mail', 'token' => $token, 'email' => $request->email]);
     }
 
     public function emailVerificationControl(Request $request)
@@ -273,7 +279,8 @@ class AccountController extends Controller
 
             return redirect('account/login')->with('verified', 'Your account is successfully verified, please login to continue !')->with('email', $request->email);
         }
-        return redirect('account/login')->with('invalid_verification', 'Verification failed! You either verified your account already or haven\'t registered with that e-mail !');
+        return redirect()->route('login_trial')->with('invalid_verification', 'Verification failed! You either verified your account already or haven\'t registered with that e-mail !');
+        // return redirect('account/login')->with('invalid_verification', 'Verification failed! You either verified your account already or haven\'t registered with that e-mail !');
     }
 
     public function forgot_password()
@@ -364,7 +371,8 @@ class AccountController extends Controller
                 'email' => $request->email
             ])->delete();
 
-            return redirect('account/login')->with('info', 'Password reset, you can now log in with your new password')->with('email', $request->email);
+            return redirect()->route('login_trial')->with('info', 'Password reset, you can now log in with your new password')->with('email', $request->email);
+            // return redirect('account/login')->with('info', 'Password reset, you can now log in with your new password')->with('email', $request->email);
         }
 
         return back()->with('invalid', 'Invalid token !');

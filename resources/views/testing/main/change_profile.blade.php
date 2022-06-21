@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('testing.main.profile_template')
 
 @section('container')
     @if (session()->has('updated'))
@@ -11,122 +11,122 @@
             {{ session('password_updated') }}
         </div>
     @endif
+    <div class="profile-card">
+        <div class="profile-header text-center">
+            <div style="border-bottom: 2px solid #c28400;">
+                <a href="index.html"><img src="/Images/logo.png" alt="" class="logo"></a>
+            </div>
+
+            <img src="/profilePhotos/stock.png" id="output" alt="" class="profile-photo">
+
+            <h3 class="name">Marcellino Julian Gozal</h3>
+            <h6 class="email">marveygoo88@gmail.com</h6>
+
+        </div>
+        <div class="profile-body">
+            <form action="{{ route('submit_edit') }}" method="post" id="demo-form" enctype="multipart/form-data">
+                <div class="form-group ml-4 mt-4">
+                    <label for="file-upload" class="inputLabel custom-file-upload">Change profile photo <input
+                            type="file" name="profile_picture" id="file-upload" onchange="loadFile(event)"></label>
+
+                    <br>
+                    <label for="description" class="inputLabel">Description</label>
+                    <textarea name="description" id="description" cols="30" maxlength="250" rows="4" class="form-control"
+                        style="width:95%;"></textarea>
+                    <label for="birthdate" class="inputLabel">Date of Birth</label><br>
+                    <input type="date" class="inputBox" name="birthdate" id="birthdate">
+                    <br>
+                    <label for="gender" class="inputLabel font-weight-bold">Gender</label> <br>
+                    <input type="radio" name="gender" value="M" class="" style=" accent-color: #c28400;">
+                    <div class="mr-3"
+                        style="display: inline;
+                                color:#c28400;
+                                ">
+                        Male</div>
+                    <br>
+                    <input type="radio" name="gender" value="F" class="" style=" accent-color: #c28400;">
+                    <div
+                        style="display:inline;
+                                color:#c28400;
+                                ">
+                        Female</div>
+                    <br>
+                    <label for="password" class="inputLabel font-weight-bold">Password</label>
+                    <div>
+                        <input type="password" name="password" id="password" placeholder="Type your password"
+                            class="inputBox">
+                        <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
+                    </div>
+                    <label for="password_confirmation" class="inputLabel font-weight-bold pt-2">Confirm
+                        Password</label>
+                    <br>
+                    <input type="password" name="password_confirmation" id="password_confirmation"
+                        placeholder="Confirm your password" class="inputBox">
+                    <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
+                    <br>
+                </div>
+            </form>
+
+            <button class="g-recaptcha change" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
+                data-callback='onSubmit'>Save</button>
+            {{-- <button type="submit" class="change">Save</button> --}}
+
+        </div>
+    </div>
     {{-- <h2>This is the update profile page</h2> --}}
-    <form action="{{ route('submit_edit') }}" method="post" id="demo-form" enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-            <h2 class="mb-1">{{ auth()->user()->name }}</h2>
-            <h2>{{ auth()->user()->points }} points</h2>
-            {{-- @php 
-                $age = Carbon::parse(auth()->user()->birthdate);
-                $age = $age->age;
-            @endphp --}}
-            {{-- @dd(auth()->user()->birthdate) --}}
-            @if (auth()->user()->birthdate)
-                <h2>{{ \Carbon\Carbon::parse(auth()->user()->birthdate)->age }} years old</h2>
-            @else
-                <h2>You have to set your birthdate first</h2>
-            @endif
 
-            @if (auth()->user()->gender == 'M')
-                <h2>Gender : Male</h2>
-            @elseif(auth()->user()->gender == 'F')
-                <h2>Gender : Female</h2>
-            @else
-                <h2>You need to set your gender first</h2>
-            @endif
-        </div>
-
-        <input type="hidden" name="email" value="{{ auth()->user()->email }}">
-        <div class="mb-3">
-            <label for="profile_picture" class="form-label">Change Profile Picture</label>
-            <input class="form-control @error('profile_picture') is-invalid @enderror" type="file" id="profile_picture"
-                name="profile_picture" value="">
-            @error('profile_picture')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description about you</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                rows="3">{{ auth()->user()->description }}</textarea>
-            @error('description')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        @if (!auth()->user()->birthdate)
-            <div class="mb-3">
-                <label for="birthdate" class="form-label @error('birthdate') is-invalid @enderror">Birthday:</label>
-                <input type="date" id="birthdate" name="birthdate" class="form-control">
-                @error('birthdate')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label class="form-check-label mb-1">
-                    Gender
-                </label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="gender" value="M">
-                    <label class="form-check-label" for="gender">
-                        Male
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="gender_f" value="F">
-                    <label class="form-check-label" for="gender_f">
-                        Female
-                    </label>
-                    @error('gender')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-            </div>
-        @endif
-        @if (!auth()->user()->password)
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                    name="password">
-                <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
-                    password</button>
-                @error('password')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="password_confirmation" class="form-label">Password Confirm</label>
-                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
-                    id="password_confirmation" name="password_confirmation">
-                <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
-                    password</button>
-                @error('password_confirmation')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-        @endif
-
-        <a href="/account/change_password" class="btn btn-primary mb-2">Change password</a>
-        {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-        <button class="g-recaptcha btn btn-primary" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
-            data-callback='onSubmit'>Submit</button>
-    </form>
 
     <script>
         function onSubmit(token) {
             document.getElementById("demo-form").submit();
         }
+
+        var loadFile = function(event) {
+            var image = document.getElementById("output");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        $(document).ready(function() {
+            //id sesuaiin kebutuhan
+            $(document).on('click', '#see_password', function() {
+                if ($(this).data('is_password')) {
+                    $(this).parent().find('input[type=password]').attr('type', 'text');
+                    $(this).data('is_password', false)
+                } else {
+                    $(this).parent().find('input[type=text]').attr('type', 'password');
+                    $(this).data('is_password', true)
+                }
+                $(this).toggleClass('fa-eye fa-eye-slash')
+            })
+        });
     </script>
+
+    <style>
+        @media only screen and (max-width: 600px) {
+            body {
+                overflow-x: hidden;
+                background-color: #ffcc5e;
+            }
+
+            .profile-card {
+                margin-left: 10%;
+                width: 80%;
+            }
+
+            .video-beach {
+                width: 100vw;
+            }
+        }
+
+        @media (min-width:641px) and (max-width:1000px) {
+            body {
+                background-color: #ffcc5e;
+                font-size: 120%;
+            }
+
+            .video-beach {
+                height: 100vh;
+            }
+        }
+    </style>
 @endsection

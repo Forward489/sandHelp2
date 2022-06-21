@@ -41,6 +41,19 @@ Route::get('/payPal', [FeatureController::class, 'index'])->middleware('auth');
 Route::post('/payPal', [FeatureController::class, 'payPalPayment'])->name('payPal.post')->middleware('auth');
 
 
+//testing purpose
+Route::get('/profile_page_trial', function() {
+    return view('testing.main.profile_page', ['title' => 'SandHelp-Profile Page']);
+})->name('profile_page_trial');
+Route::get('/changeProfileTrial', function() {
+    return view('testing.main.change_profile', ['title' => 'SandHelp-Profile Page']);
+})->name('change_page_trial');
+
+
+
+
+
+
 
 // Route::get('/login/google/redirect', [AccountController::class, 'googleLoginRedirect'])->name('googleLogin');
 // Route::get('/login/google/callback', [AccountController::class, 'googleCallback'])->name('googleCallback');

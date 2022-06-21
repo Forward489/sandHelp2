@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
+    <style>
+        #main_navbar {
+            visibility: hidden;
+        }
+    </style>
     @if (session()->has('password_not_match'))
         <div class="alert alert-danger" role="alert">
             {{ session('password_not_match') }}

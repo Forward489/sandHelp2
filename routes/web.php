@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Auth::routes(['verify'=>true]);
 
+// Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
 Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
 
 Route::get('/testing', [TestingController::class, 'index'])->middleware('auth');

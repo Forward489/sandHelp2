@@ -23,7 +23,7 @@
     <br>
 
     <div class="dont-worry-box ">
-        <p>Please Enter your email address. <br> We will send you an mail to reset your password</p>
+        <p>Please Enter your email address. <br> We will send you a mail to reset your password</p>
     </div>
     <div class="inputWrapper text-left">
 

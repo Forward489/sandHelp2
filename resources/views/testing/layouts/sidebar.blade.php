@@ -3,77 +3,50 @@
             <!-- Sidebar -->
             <div id="mySidebar" class="sidebar">
                 <div class="profile text-center">
-                    <div class="photo-container">
-                        <a href="profilePage.html"
-                            ><img
-                                src="/profilePhotos/stock.png"
-                                alt=""
-                                class="profile-photo"
-                        /></a>
-                    </div>
-                    <div class="ask-account">
-                        <a href="{{ route('login_trial') }}" class="mt-3">Sign in</a>
-                        <a href="{{ route('regist_trial') }}">Create Account</a>
-                    </div>
+                    @auth
+                        <div class="photo-container">
+                            <a href="{{ route('profile_page_trial') }}"><img src="/profilePhotos/stock.png" alt=""
+                                    class="profile-photo" /></a>
+                        </div>
+                        <form action="/account/logout" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-link nav-link me-2 text-decoration-none text-center text-secondary " style="margin-left: 35%">Logout</button>
+                        </form>
+                    @endauth
+                    @guest
+                        <div class="ask-account">
+                            <a href="{{ route('login_trial') }}" class="mt-3">Sign in</a>
+                            <a href="{{ route('regist_trial') }}">Create Account</a>
+                        </div>
+                    @endguest
                 </div>
-                <a
-                    href="javascript:void(0)"
-                    class="closebtn"
-                    onclick="closeNav()"
-                    >&times;</a
-                >
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <!-- <hr class="mt-5"> -->
-                <div
-                    class="bar"
-                    style="border-top: 0.8px solid rgba(90, 90, 90, 0.555)"
-                >
-                    <a href="/homePage" class="">
-                        <img
-                            src="/Images/home.png"
-                            class="icon"
-                            width="50px"
-                            alt=""
-                            style=""
-                        />
+                <div class="bar" style="border-top: 0.8px solid rgba(90, 90, 90, 0.555)">
+                    <a href="{{ route('landing_testing') }}" class="">
+                        <img src="/Images/home.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">HOME</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
                     <a href="#donationCard" class="" id="donationCardLink">
-                        <img
-                            src="/Images/donate.png"
-                            class="icon"
-                            width="50px"
-                            alt=""
-                            style=""
-                        />
+                        <img src="/Images/donate.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">DONATE NOW</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
                     <a href="#leaderboard" class="">
-                        <img
-                            src="/Images/leaderboard.png"
-                            class="icon"
-                            width="50px"
-                            alt=""
-                            style=""
-                        />
+                        <img src="/Images/leaderboard.png" class="icon" width="50px" alt=""
+                            style="" />
                         <h3 class="text-bar">LEADERBOARD</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
                     <a href="#location-container" class="">
-                        <img
-                            src="/Images/location.png"
-                            class="icon"
-                            width="50px"
-                            alt=""
-                            style=""
-                        />
+                        <img src="/Images/location.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">PROJECT LOCATIONS</h3>
                     </a>
                 </div>
