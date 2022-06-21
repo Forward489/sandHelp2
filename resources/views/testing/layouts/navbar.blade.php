@@ -1,5 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main_navbar">
     <div class="container-fluid">
+        @guest
+            <a class="nav-link {{ request()->segment(1) == '' ? 'active' : '' }}" aria-current="page" href="/">Home</a>
+        @endguest
+        @auth
+            <a class="nav-link {{ request()->segment(1) == '' ? 'active' : '' }}" aria-current="page"
+                href="/homePage">Home</a>
+        @endauth
         <a class="navbar-brand" href="/homePage">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

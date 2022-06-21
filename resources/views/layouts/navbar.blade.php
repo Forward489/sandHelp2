@@ -62,6 +62,10 @@
                         <a class="nav-link me-2 {{ request()->segment(1) == 'loginTest' ? 'active' : '' }}"
                             href="{{ route('login_trial') }}">Login Trial</a>
                     </li>
+                    <li class="nav-item d-flex">
+                        <a class="nav-link me-2"
+                            href="{{ route('landing_testing') }}">Landing Trial</a>
+                    </li>
                 @endguest
                 @auth
                     <li class="nav-item d-flex">

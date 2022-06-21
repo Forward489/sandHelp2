@@ -27,17 +27,13 @@ Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})
 
 Route::get('/testing', [TestingController::class, 'index'])->middleware('auth');
 
+Route::get('/landingTesting', function() {
+    return view('testing.landing');
+})->name('landing_testing');
 
 
-Route::get('/regisTest', function() {
-    return view('account.registration2', ['title' => 'SandHelp-Register']);
-})->name('regist_trial');
-Route::get('/loginTest', function() {
-    return view('account.login2', ['title' => 'SandHelp-Login']);
-})->name('login_trial');
-Route::get('/forgotPassword', function() {
-    return view('account.forgot_password_index2', ['title' => 'SandHelp-Login']);
-})->name('forgot_password_trial');
+
+
 
 
 

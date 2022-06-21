@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('testing.layouts.main_account')
 
 {{-- {{ HTML::style('css/app.css'); }} --}}
 @section('container')
@@ -47,62 +47,93 @@
             {{ session('logged out') }}
         </div>
     @endif
-    <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}"> --}}
     {{-- <p class="test-css">
             Halo Tes
         </p> --}}
-    <form action="/account/login/post" method="post" id="demo-form">
-        @csrf
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                aria-describedby="emailHelp" name="email" value="{{ old('email') }}">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <!-- Title -->
+    <h3 class="welcome pb-5">
+        Welcome to SandHelp
+    </h3>
+    <!-- Title end -->
+
+    <!-- Form wrapper -->
+    <div class="inputWrapper text-left">
+        <form action="/account/login/post" method="post" id="demo-form" class="form-group">
+            @csrf
+            <label for="email" class="inputLabel font-weight-bold">Email</label>
+            <br>
+            {{-- <label for="email" class="inputLabel font-weight-bold"
+                onclick="showPopup('Please verify your email')">Email</label> <br> --}}
+            <input type="email" name="email" id="email" placeholder="Type your email" class="inputBox">
             @error('email')
-                <div class="invalid-feedback">
-                    {{-- @dd($message) --}}
-                    {{ $message }}
-                </div>
+                <br>
+                <label for="email" class="inputLabel font-weight-bold">{{ $message }}</label>
             @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                name="password">
-            <button type="button" class="btn btn-primary d-inline" id="see_password_old" data-is_password=true>See
-                password</button>
+            <br>
+            <label for="password" class="inputLabel font-weight-bold pt-2">Password</label><br>
+            <input type="password" name="password" id="password" placeholder="Type your password" class="inputBox">
+            <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
             @error('password')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
+                <br>
+                <label for="password" class="inputLabel font-weight-bold">{{ $message }}</label>
             @enderror
-        </div>
+            <br>
+            <div class="text-right pt-3">
+                <a href="{{ route('forgot_password_trial') }}" class="forget-password">Forgot Password?</a>
+            </div>
+            <br>
+            <div class="text-center pt-3">
+                {{-- <input type="submit" name="" id="" class="sign-in" value="Sign in"> --}}
+                <button class="g-recaptcha sign-in" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
+                    data-callback='onSubmit'>Submit</button>
+            </div>
+        </form>
+    </div>
+    <!-- Form wrapper end -->
+    <div class="or">
+        <hr>
+        <p>or</p>
+    </div>
+    <br>
 
+    <a href="{{ route('googleLogin') }}" class="text-decoration-none text-white">
+        <button class="mt-4 mb-5 google">
+            <i class="fa fa-google pr-2" aria-hidden="true" style="color:white;"></i>
+            Sign in with google
+        </button>
+    </a>
 
-        {{-- <button type="submit" class="btn btn-primary d-flex justify-content-center">Submit</button> --}}
-        <div class="text-center">
-            {{-- <button type="submit" class="btn btn-primary text">Submit</button> --}}
-            <button class="g-recaptcha btn btn-primary" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
-                data-callback='onSubmit'>Submit</button>
-        </div>
-    </form>
+    {{-- <button class="mt-4 mb-5 google">
+        <i class="fa fa-google pr-2" aria-hidden="true" style="color:white;"></i>
+        Sign in with google
+    </button> --}}
+
+    <p class="create-account">New sand warrior? <a href="{{ route('regist_trial') }}">Create account</a> </p>
+
+    <style>
+        .grecaptcha-badge {
+            visibility: hidden;
+        }
+    </style>
+
     <script>
+        $(document).ready(function() {
+            //id sesuaiin kebutuhan
+            $(document).on('click', '#see_password', function() {
+                if ($(this).data('is_password')) {
+                    $(this).parent().find('input[type=password]').attr('type', 'text');
+                    $(this).data('is_password', false)
+                } else {
+                    $(this).parent().find('input[type=text]').attr('type', 'password');
+                    $(this).data('is_password', true)
+                }
+                $(this).toggleClass('fa-eye fa-eye-slash')
+            })
+        });
+
         function onSubmit(token) {
             document.getElementById("demo-form").submit();
         }
     </script>
-    <div class="text-center">
-        or
-    </div>
-    {{-- <a href="{{ route('googleLogin') }}" class="btn btn-danger justify-content-center">Login With Google</a> --}}
-    <div class="text-center">
-        <a href="{{ route('googleLogin') }}" class="btn btn-danger text">Login With Google</a>
-    </div>
-    <div class="text-center">
-        Don't have an account ? <a href="/account/registration" class="text-decoration-none">Make one here !</a>
-    </div>
-    <div class="text-center">
-        Forgot your password ? <a href="{{ route('forgotPasswordIndex') }}" class="text-decoration-none">Click here !</a>
-    </div>
 @endsection

@@ -29,4 +29,19 @@ Route::post('/authenticate', [AccountController::class, 'emailVerificationContro
 Route::get('/change_password', [AccountController::class, 'changePasswordIndex']);
 Route::post('/change_password', [AccountController::class, 'changePassword'])
 ;
+
+
+
+
+
+//testing purpose
+Route::get('/regisTest', function() {
+    return view('testing.account.registration', ['title' => 'SandHelp-Register']);
+})->name('regist_trial');
+Route::get('/loginTest', function() {
+    return view('testing.account.login', ['title' => 'SandHelp-Login']);
+})->name('login_trial');
+Route::get('/forgotPassword', function() {
+    return view('testing.account.forgot_password_index', ['title' => 'SandHelp-Login']);
+})->name('forgot_password_trial');
 ?>

@@ -37,7 +37,7 @@
     </script>
 
     <script src="/Scripts/preloader.js"></script>
-    <script src="/Scripts/includeHtml.js"></script>
+    <!-- <script src="/Scripts/includeHtml.js"></script> -->
     <script src="/Scripts/changeBackground.js"></script>
     <script src="/Scripts/popup.js"></script>
     <script></script>
@@ -47,8 +47,9 @@
 
 <div style="overflow-x:hidden">
 
-    <body class="wow fadeIn" style="" onload="changeBackground('no_logo'); includeHTML(); showPopup('helolololol')">
-        <div w3-include-html="/htmls/popup.html"></div>
+    <body class="wow fadeIn" style="" onload="changeBackground('no_logo');">
+    <!-- <body class="wow fadeIn" style="" onload="changeBackground('no_logo'); includeHTML(); showPopup('helolololol')"> -->
+        <!-- <div w3-include-html="/htmls/popup.html"></div> -->
         <!-- <div w3-include-html="/htmls/preloader.html"></div> -->
         <div class="video-container">
             <!-- Video Background -->
@@ -75,46 +76,7 @@
                     </div>
                     <!-- Logo end -->
 
-                    <!-- Title -->
-                    <h3 class="welcome pb-5">
-                        Welcome to SandHelp
-                    </h3>
-                    <!-- Title end -->
-
-                    <!-- Form wrapper -->
-                    <div class="inputWrapper text-left">
-                        <form action="" class="form-group" method="POST">
-                            <label for="email" class="inputLabel font-weight-bold"
-                                onclick="showPopup('Please verify your email')">Email</label> <br>
-                            <input type="email" name="" id="" placeholder="Type your email" class="inputBox">
-                            <br>
-                            <label for="password" class="inputLabel font-weight-bold pt-2">Password</label><br>
-                            <input type="password" name="" id="" placeholder="Type your password" class="inputBox">
-                            <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password = true></i>
-                            <br>
-                            <div class="text-right pt-3">
-                                <a href="forgetPage.html" class="forget-password">Forget Password?</a>
-                            </div>
-                            <br>
-                            <div class="text-center pt-3">
-                                <input type="submit" name="" id="" class="sign-in" value="Sign in">
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Form wrapper end -->
-                    <div class="or">
-                        <hr>
-                        <p>or</p>
-                    </div>
-                    <br>
-
-                    <button class="mt-4 mb-5 google">
-                        <i class="fa fa-google pr-2" aria-hidden="true" style="color:white;"></i>
-                        Sign in with google
-                    </button>
-
-                    <p class="create-account">New sand warrior? <a href="registerPage.html">Create account</a> </p>
-
+                    
                 </div>
             </div>
 
