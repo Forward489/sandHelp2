@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 // use Illuminate\Support\Facades\Redis;
 
 class UpdateProfileController extends Controller
@@ -26,7 +27,7 @@ class UpdateProfileController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
+        
         // dd($request->file('profile_picture'));
         $request->validate([
             'description' => 'max:255',
@@ -44,6 +45,8 @@ class UpdateProfileController extends Controller
                 }
             }
         ]);
+
+        // dd($request);
 
         // dd($request);
 
@@ -78,8 +81,13 @@ class UpdateProfileController extends Controller
             $picture = $request->validate([
                 'profile_picture' => 'image|file|max:2048',
             ]);
+
+            if (auth()->user()->profile_picture) {
+                $file = auth()->user()->profile_picture;
+                File::delete($file);
+            }
             
-            $picture['profile_picture'] = $request->file('profile_picture')->store('profile_pictures');
+            $picture['profile_picture'] = $request->file('profile_picture')->store('profilePhotos');
 
             User::where('email', $request->email)->update([
                 'profile_picture' => $picture['profile_picture'],

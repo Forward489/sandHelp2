@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/stylesheets/accountHandling.css">
     <link rel="stylesheet" href="/stylesheets/emailHandling.css">
     <link rel="icon" type="image/png" href="/Images/favicon.png">
-    <link rel="stylesheet" href="/stylesheets/footer.css">
+    {{-- <link rel="stylesheet" href="/stylesheets/footer.css"> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js">
@@ -85,9 +85,9 @@
 
                 </div>
             </div>
-
-            @include('testing.layouts.landing_footer')
+            {{-- @include('testing.layouts.landing_footer') --}}
         </div>
+        @yield('footer')
     </body>
 </div>
 

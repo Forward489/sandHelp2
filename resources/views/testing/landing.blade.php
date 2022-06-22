@@ -1,3 +1,10 @@
+{{-- @dd($donations) --}}
+@php
+    $total_donation = 0;
+    foreach($donations as $a) {
+        $total_donation += $a->money_amount;
+    }
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +38,10 @@
                 <h3 class="text-center text-white" id="totalDonation">
                     DONATION RAISED <br>
                 </h3>
-                <h1 class="count text-center text-white" data-value=2000000000 id="currentProgress">0</h1>
+
+                
+                <h1 class="count text-center text-white" data-value={{ $total_donation }} id="currentProgress">0</h1>
+                {{-- <h1 class="count text-center text-white" data-value=2000000000 id="currentProgress">0</h1> --}}
                 <!-- Total Donation Text End -->
 
             </div>
@@ -60,7 +70,7 @@
                     <!-- Left column end -->
                 </div>
 
-
+                {{-- @dd($donations) --}}
                 @include('testing.feature.leaderboard')
             </div>
             <!-- Container donasi & Leaderboard end -->

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\FeatureController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,7 +25,12 @@ use Illuminate\Support\Facades\Auth;
 // Auth::routes(['verify'=>true]);
 
 // Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
-Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
+// Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
+Route::get('/', [FeatureController::class, 'init_page'])->name('init')->middleware('guest');
+// // Route::get('/', function() {return view('landing', ['title'=>'Landing Page']);})->middleware('guest');
+// Route::get('/', function() {
+//     return view('testing.landing', ['title'=>'Landing Page']);
+// })->middleware('guest');
 
 Route::get('/testing', [TestingController::class, 'index'])->middleware('auth');
 

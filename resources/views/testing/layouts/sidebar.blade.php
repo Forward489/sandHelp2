@@ -5,12 +5,32 @@
                 <div class="profile text-center">
                     @auth
                         <div class="photo-container">
+                            @if (!auth()->user()->profile_picture)
+                                @if (auth()->user()->avatar)
+                                    <a href="{{ route('profile_page_trial') }}"><img src="{{ auth()->user()->avatar }}"
+                                            alt="" class="profile-photo" /></a>
+                                @else
+                                    <a href="{{ route('profile_page_trial') }}"><img src="/profilePhotos/stock.png"
+                                            alt="" class="profile-photo" /></a>
+                                @endif
+                            @else
+                                <a href="{{ route('profile_page_trial') }}"><img
+                                        src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt=""
+                                        class="profile-photo" /></a>
+                            @endif
+                        </div>
+
+                        {{-- <div class="photo-container">
                             <a href="{{ route('profile_page_trial') }}"><img src="/profilePhotos/stock.png" alt=""
                                     class="profile-photo" /></a>
-                        </div>
+                        </div> --}}
+                        <h3 class="mt-3">{{ auth()->user()->name }}</h3>
+
                         <form action="/account/logout" method="post">
                             @csrf
-                            <button type="submit" class="btn btn-link nav-link me-2 text-decoration-none text-center text-secondary " style="margin-left: 35%">Logout</button>
+                            <button type="submit"
+                                class="btn btn-link nav-link me-2 text-decoration-none text-center text-secondary "
+                                style="margin-left: 35%">Logout</button>
                         </form>
                     @endauth
                     @guest
@@ -23,21 +43,21 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <!-- <hr class="mt-5"> -->
                 <div class="bar" style="border-top: 0.8px solid rgba(90, 90, 90, 0.555)">
-                    <a href="{{ route('landing_testing') }}" class="">
+                    <a href="{{ route('init') }}" class="">
                         <img src="/Images/home.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">HOME</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
-                    <a href="#donationCard" class="" id="donationCardLink">
+                    <a href="{{ route('init') }}#donationCard" class="" id="donationCardLink">
                         <img src="/Images/donate.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">DONATE NOW</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
-                    <a href="#leaderboard" class="">
+                    <a href="{{ route('init') }}#leaderboard" class="">
                         <img src="/Images/leaderboard.png" class="icon" width="50px" alt=""
                             style="" />
                         <h3 class="text-bar">LEADERBOARD</h3>
@@ -45,7 +65,7 @@
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
-                    <a href="#location-container" class="">
+                    <a href="{{ route('init') }}#location-container" class="">
                         <img src="/Images/location.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">PROJECT LOCATIONS</h3>
                     </a>

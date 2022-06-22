@@ -18,7 +18,7 @@
                     <div class="col-md-3">
                         <div class="page-links text-left">
                             <a href="{{ route('landing_testing') }}" class="link link-left">HOME</a>
-                            <a href="#donationCard" class="link link-left" id="donation-card-link-footer">DONATE</a>
+                            <a href="{{ route('landing_testing') }}#donationCard" class="link link-left" id="donation-card-link-footer">DONATE</a>
                         </div>
                     </div>
                     <!-- Left end -->
@@ -31,8 +31,8 @@
 
                     <!-- Right -->
                     <div class="col-md-3 text-right">
-                        <a href="#leaderboard" class="link link-right">LEADERBOARD</a>
-                        <a href="#location-container" class="link link-right">LOCATIONS</a>
+                        <a href="{{ route('landing_testing') }}#leaderboard" class="link link-right">LEADERBOARD</a>
+                        <a href="{{ route('landing_testing') }}#location-container" class="link link-right">LOCATIONS</a>
                     </div>
                 </div>
                 <!-- Right end -->

@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Donation;
 use Illuminate\Support\Facades\DB;
 
 class FeatureController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $check = User::where('email', auth()->user()->email)->first();
+    //     if (!$check->password) {
+    //         return view('main.change_profile', ['title' => 'Change Profile']);
+    //     } else {
+    //         return view('feature.payPal', ['title' => 'PayPal Testing']);
+    //     }
+    // }
+
+    public function init_page()
     {
-        $check = User::where('email', auth()->user()->email)->first();
-        if (!$check->password) {
-            return view('main.change_profile', ['title' => 'Change Profile']);
-        } else {
-            return view('feature.payPal', ['title' => 'PayPal Testing']);
-        }
+        // $total_donation = Donation::with(['users'])->sum('money_amount')->get();
+        
+        return view('testing.landing', ['donations' => Donation::with(['users'])->orderBy('created_at', 'desc')->get()]);
     }
 
     public function query(Request $request)
@@ -121,7 +129,7 @@ class FeatureController extends Controller
                     </tr> 
                     </thead>
                         <tbody>";
-               
+
                 foreach ($data as $data) {
                     $output .= "
                         <tr>
@@ -142,7 +150,7 @@ class FeatureController extends Controller
                 $output .= "
                         </tbody>
                         </table>";
-                if($count > $limit) {
+                if ($count > $limit) {
                     $output .= "
                     <div id='load-more'>
                         <button type='button' id='load_more_button' name='load_more_button' class='btn btn-info form-control' data-points='$last_points'>Load More</button>
@@ -159,7 +167,7 @@ class FeatureController extends Controller
             echo $output;
         }
         // $json = array('table_data' => $output);
-        
+
     }
 
     public function load_names(Request $request)
@@ -238,8 +246,9 @@ class FeatureController extends Controller
         // echo $output;
     }
 
-    public function payPalPayment(Request $request) {
-        if($request->ajax()) {
+    public function payPalPayment(Request $request)
+    {
+        if ($request->ajax()) {
             $points = $request->amount;
             // $points = (double)$request->amount;
 

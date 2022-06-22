@@ -39,24 +39,74 @@
                             <!-- Leaderboard Cards -->
                             <div style="display: flex; justify-content:center; align-items:center">
                                 <div class="leaderboard-body " id="leaderboard-body">
-                                    <!-- Card 1 -->
-                                    <div class="container-leaderboard mt-4 bg-light text-left wow fadeInLeft">
-                                        <img src="/Images/TIER 3.png" alt="" id="badge">
-                                        <div class="block-text-leaderboard" style="">
-                                            <h3 id="nama-leaderboard">Marcellino Julian Gozal</h5>
-                                                <h5 id="pesan-leaderboard">Indonesia beach beach beach beach beach</h6>
-                                        </div>
-                                        <div class="block-text-right-leaderboard">
-                                            <h3 class="leaderboard-amount">
-                                                <div id="leaderboard-amount" class="text-center">
-                                                    1000 kg
+                                    @php
+                                        $left = true;
+                                    @endphp
+                                    @foreach ($donations as $a)
+                                        <!-- Card 1 -->
+                                        @if ($left)
+                                            <div class="container-leaderboard mt-4 bg-light text-left wow fadeInLeft">
+                                                @if ($a->trash_weights > 0 && $a->trash_weights < 100)
+                                                    <img src="/Images/TIER 3.png" alt="" id="badge">
+                                                @elseif($a->trash_weights > 100 && $a->trash_weights < 500)
+                                                    <img src="/Images/TIER 2.png" alt="" id="badge">
+                                                @else
+                                                    <img src="/Images/TIER 1.png" alt="" id="badge">
+                                                @endif
+                                                {{-- <img src="/Images/TIER 3.png" alt="" id="badge"> --}}
+                                                <div class="block-text-leaderboard" style="">
+                                                    <h3 id="nama-leaderboard">{{ $a->nickname }}</h3>
+                                                    {{-- <h5 id="pesan-leaderboard">message
+                                                        </h5> --}}
+                                                    <h5 id="pesan-leaderboard">{{ $a->message }}
+                                                    </h5>
                                                 </div>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!-- Card 1 end -->
+                                                <div class="block-text-right-leaderboard">
+                                                    <h3 class="leaderboard-amount">
+                                                        <div id="leaderboard-amount" class="text-center">
+                                                            {{ $a->trash_weights }} kg
+                                                        </div>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <!-- Card 1 end -->
+                                            @php
+                                                $left = false;
+                                            @endphp
+                                        @else
+                                            <div class="container-leaderboard mt-4 bg-light text-left wow fadeInRight">
+                                                @if ($a->trash_weights > 0 && $a->trash_weights < 100)
+                                                    <img src="/Images/TIER 3.png" alt="" id="badge">
+                                                @elseif($a->trash_weights > 100 && $a->trash_weights < 500)
+                                                    <img src="/Images/TIER 2.png" alt="" id="badge">
+                                                @else
+                                                    <img src="/Images/TIER 1.png" alt="" id="badge">
+                                                @endif
+                                                {{-- <img src="/Images/TIER 3.png" alt="" id="badge"> --}}
+                                                <div class="block-text-leaderboard" style="">
+                                                    <h3 id="nama-leaderboard">{{ $a->nickname }}</h3>
+                                                    {{-- <h5 id="pesan-leaderboard">message
+                                                        </h5> --}}
+                                                    <h5 id="pesan-leaderboard">{{ $a->message }}
+                                                    </h5>
+                                                </div>
+                                                <div class="block-text-right-leaderboard">
+                                                    <h3 class="leaderboard-amount">
+                                                        <div id="leaderboard-amount" class="text-center">
+                                                            {{ $a->trash_weights }} kg
+                                                        </div>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <!-- Card 1 end -->
+                                            @php
+                                                $left = true;
+                                            @endphp
+                                        @endif
+                                    @endforeach
 
-                                    <!-- Card 2 -->
+
+                                    {{-- <!-- Card 2 -->
                                     <div class="container-leaderboard mt-4 bg-light text-left wow fadeInRight">
                                         <img src="/Images/TIER 2.png" alt="" id="badge">
                                         <div class="block-text-leaderboard" style="">
@@ -90,7 +140,7 @@
                                             </h3>
                                         </div>
                                     </div>
-                                    <!-- Card 3 end -->
+                                    <!-- Card 3 end --> --}}
                                 </div>
                             </div>
                             <!-- Leaderboard Cards End -->

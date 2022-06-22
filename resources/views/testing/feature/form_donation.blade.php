@@ -80,7 +80,7 @@
                                     <br>
                                     <input type="text" id="displayName" maxlength="40" class="inputDetails"
                                         onclick="resetColorButtons()" placeholder="Message for Indonesia's Beach"
-                                        name="amountDonation">
+                                        name="amountDonation" required>
                                     <br>
                                     <label for="total" class="labelInputs">Total</label>
                                     <br>
