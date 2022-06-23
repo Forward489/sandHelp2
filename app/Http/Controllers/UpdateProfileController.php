@@ -9,20 +9,25 @@ use Illuminate\Support\Facades\File;
 
 class UpdateProfileController extends Controller
 {
-    public function landingPage()
-    {
-        $check = User::where('email', auth()->user()->email)->first();
-        // dd($check->password);
-        if (!$check->password) {
-            return view('main.change_profile', ['title' => 'Change Profile']);
-        } else {
-            return view('homepage', ['title' => 'Home Page']);
-        }
-    }
 
+    public function profile_page() {
+        return view('testing.main.profile_page', ['title' => 'Profile Page']);
+    }
+    public function change_profile()
+    {
+        return view('testing.main.change_profile', ['title' => 'Edit Profile']);
+        // $check = User::where('email', auth()->user()->email)->first();
+        // // dd($check->password);
+        // if (!$check->password) {
+        //     return view('main.change_profile', ['title' => 'Change Profile']);
+        // } else {
+        //     return view('homepage', ['title' => 'Home Page']);
+        // }
+    }
+ 
     public function index()
     {
-        return view('main.change_profile', ['title' => 'Change Profile']);
+        return view('testing.main.change_profile', ['title' => 'SandHelp-Profile Page']);
     }
 
     public function update(Request $request)
@@ -102,6 +107,6 @@ class UpdateProfileController extends Controller
             'description' => $request->description,
         ]);
 
-        return back()->with('updated', 'You have successfully updated your description and or your profile picture !');
+        return redirect()->route('change_page_trial')->with('updated', 'You have successfully updated your description and or your profile picture !');
     }
 }

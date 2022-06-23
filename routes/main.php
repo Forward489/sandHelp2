@@ -25,9 +25,9 @@ use App\Http\Controllers\FeatureController;
 
 // Auth::routes(['verify'=>true]);
 
-Route::get('/edit_profile', [UpdateProfileController::class, 'index'])->name('edit_profile')->middleware('auth');
-Route::post('/edit_profile', [UpdateProfileController::class, 'update'])->name('submit_edit')->middleware('auth');
-Route::get('/homePage', [UpdateProfileController::class, 'landingPage'])->middleware('auth');
+// Route::get('/edit_profile', [UpdateProfileController::class, 'index'])->name('edit_profile')->middleware('auth');
+// Route::post('/edit_profile', [UpdateProfileController::class, 'update'])->name('submit_edit')->middleware('auth');
+// Route::get('/homePage', [UpdateProfileController::class, 'landingPage'])->middleware('auth');
 
 Route::get('/result', [FeatureController::class, 'query'])->name('getTableResult');
 
@@ -37,17 +37,13 @@ Route::post('/loadmoreNames', [FeatureController::class, 'load_names'])->name('l
 // Route::get('/payPal', function() {
 //     return view('feature.payPal', ['title' => 'PayPal Testing']);
 // })->middleware('auth');
-Route::get('/payPal', [FeatureController::class, 'index'])->middleware('auth');
+// Route::get('/payPal', [FeatureController::class, 'index'])->middleware('auth');
 Route::post('/payPal', [FeatureController::class, 'payPalPayment'])->name('payPal.post')->middleware('auth');
 
 
-//testing purpose
-Route::get('/profile_page_trial', function() {
-    return view('testing.main.profile_page', ['title' => 'SandHelp-Profile Page']);
-})->name('profile_page_trial');
-Route::get('/changeProfileTrial', function() {
-    return view('testing.main.change_profile', ['title' => 'SandHelp-Profile Page']);
-})->name('change_page_trial');
+//Profile editing
+Route::get('/profile', [UpdateProfileController::class, 'profile_page'])->name('profile_page_trial')->middleware('auth');
+Route::get('/profile/edit', [UpdateProfileController::class, 'change_profile'])->name('change_page_trial')->middleware('auth');
 
 
 

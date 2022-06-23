@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeatureController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+Route::get('/success', [FeatureController::class, 'payment_success'])->name('payment.success');
+Route::get('/failed', [FeatureController::class, 'payment_failed'])->name('payment.failed');

@@ -1,3 +1,5 @@
+{{-- early development and testing purposes --}}
+
 @extends('layouts.main')
 
 @section('container')
@@ -92,14 +94,6 @@
 
     <script>
         $(document).ready(function() {
-            // var search_bar = $('#name').val();
-            // ajaks(search_bar);
-            // $('#name').on('keyup', function() {
-            //     var search_bar = $('#name').val();
-            //     console.log(search_bar);
-            //     // alert(search_bar);
-            //     ajaks(search_bar);
-            // });
             var _token = $('input[name="_token"]').val();
             loadData('', _token);
 

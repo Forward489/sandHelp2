@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('message');
             $table->integer('trash_weights');
             $table->integer('money_amount');
+            $table->boolean('anonymous')->default(0);
             $table->timestamps();
         });
     }

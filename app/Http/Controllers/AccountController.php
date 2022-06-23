@@ -20,13 +20,12 @@ class AccountController extends Controller
     public function login()
     {
         // return view('account.login', ['title' => 'Login Page']);
-        return view('testing.account.login', ['title' => 'SandHelp-Login']);
+        return view('testing.account.login', ['title' => 'Login']);
     }
 
     public function registration()
     {
-        // return view('account.registration', ['title' => 'Registration Page']);
-        return view('testing.account.forgot_password_index', ['title' => 'SandHelp-Login']);
+        return view('testing.account.registration', ['title' => 'Register']);
     }
 
     public function store(Request $request)
@@ -154,7 +153,7 @@ class AccountController extends Controller
             if ($verified) {
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    return redirect()->route('landing_testing');
+                    return redirect()->route('init');
                 }
                 // else {
                 //     return back()->with('loginError', 'Login failed !');
@@ -201,10 +200,10 @@ class AccountController extends Controller
         $available = User::where('email', $user->email)->first();
         $this->createUpdateUser($user, 'google');
         if (!$available) {
-            return redirect('/edit_profile');
+            return redirect()->route('change_page_trial');
         }
         // return redirect('/homePage');
-        return redirect()->route('landing_testing');
+        return redirect()->route('init');
     }
 
     private function createUpdateUser($data, $provider)
@@ -285,7 +284,8 @@ class AccountController extends Controller
 
     public function forgot_password()
     {
-        return view('account.forgot_password_index', ['title' => 'Forgot Password']);
+        // return view('account.forgot_password_index', ['title' => 'Forgot Password']);
+        return view('testing.account.forgot_password_index', ['title' => 'Forgot Password']);
     }
 
     public function sendForgetToken(Request $request)
@@ -330,6 +330,11 @@ class AccountController extends Controller
             'email' => $request->email,
             'title' => 'Password Reset'
         ]);
+        // $action_link = route('reset.password.form', [
+        //     'token' => $token,
+        //     'email' => $request->email,
+        //     'title' => 'Password Reset'
+        // ]);
 
         $body = "We received a request to reset your password under the e-mail of $request->email. To reset your password, click the link below";
 
@@ -343,7 +348,7 @@ class AccountController extends Controller
 
     public function resetPasswordForm(Request $request, $token = NULL)
     {
-        return view('account.forgot_password_form', ['title' => 'Reset Password', 'token' => $token, 'email' => $request->email]);
+        return view('testing.account.forgot_password_form', ['title' => 'Reset Password', 'token' => $token, 'email' => $request->email]);
     }
 
     public function resetPasswordControl(Request $request)
@@ -378,16 +383,19 @@ class AccountController extends Controller
         return back()->with('invalid', 'Invalid token !');
     }
 
-    public function changePasswordIndex() {
+    public function changePasswordIndex()
+    {
         $check = User::where('email', auth()->user()->email)->first();
         if (!$check->password) {
-            return view('main.change_profile', ['title' => 'Change Profile']);
+            return view('testing.main.change_profile', ['title' => 'Edit Profile']);
+            // return view('main.change_profile', ['title' => 'Change Profile']);
         } else {
             return view('account.changePassword', ['title' => 'Change Password']);
         }
     }
 
-    public function changePassword(Request $request) {
+    public function changePassword(Request $request)
+    {
         $update_password = $request->validate([
             'old_password' => 'required|min:8',
             'password' => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%_]).*$/|confirmed',
@@ -409,15 +417,13 @@ class AccountController extends Controller
 
         $old_password = auth()->user()->password;
 
-        if(Hash::check($update_password['old_password'], $old_password)) {
+        if (Hash::check($update_password['old_password'], $old_password)) {
             User::where('email', $request->email)->update([
                 'password' => Hash::make($update_password['password']),
             ]);
-            return redirect()->route('edit_profile')->with('password_updated','Password successfully updated !');
+            return redirect()->route('change_page_trial')->with('password_updated', 'Password successfully updated !');
         }
 
         return back()->with('password_not_match', 'Your old password doesn\'t match');
     }
-
-
 }

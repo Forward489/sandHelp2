@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    @include('layouts.navbar')
+    {{-- @include('layouts.navbar') --}}
     {{-- @auth
         @if (auth()->user()->is_verified)
             <div class="container mt-3">

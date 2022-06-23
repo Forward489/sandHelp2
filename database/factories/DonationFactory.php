@@ -16,11 +16,13 @@ class DonationFactory extends Factory
      */
     public function definition()
     {
+        $weight = mt_rand(0,4000);
+        $money = $weight * 5000;
         return [
             'nickname' => $this->faker->name(),
             'message' => $this->faker->sentence(10),
-            'trash_weights' => mt_rand(0, 4000),
-            'money_amount' => mt_rand(200000000, 500000000),
+            'trash_weights' => $weight,
+            'money_amount' => $money,
         ];
     }
 }

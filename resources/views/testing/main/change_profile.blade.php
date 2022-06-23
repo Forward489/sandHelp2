@@ -15,13 +15,18 @@
     <div class="profile-card">
         <div class="profile-header text-center">
             <div style="border-bottom: 2px solid #c28400;">
-                <a href="/"><img src="/Images/logo.png" alt="" class="logo"></a>
+                <a href="{{ route('home_page') }}"><img src="/Images/logo.png" alt="" class="logo"></a>
             </div>
 
             @if (auth()->user()->profile_picture)
-                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" id="output" alt="" class="profile-photo">
+                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" id="output" alt=""
+                    class="profile-photo">
             @else
-                <img src="/profilePhotos/stock.png" id="output" alt="" class="profile-photo">
+                @if (auth()->user()->avatar)
+                    <img src="{{ auth()->user()->avatar }}" alt="" class="profile-photo" />
+                @else
+                    <img src="/profilePhotos/stock.png" id="output" alt="" class="profile-photo">
+                @endif
             @endif
 
             {{-- <h3 class="name">Marcellino Julian Gozal</h3> --}}
@@ -98,10 +103,14 @@
                         @enderror
                         <br>
                     @endif
+                    <br>
+                    <a href="{{ route('change_password') }}" class="inputLabel text-decoration-none">Change password</a>
+
                     <button class="g-recaptcha change" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
                         data-callback='onSubmit'>Save</button>
                 </div>
             </form>
+
 
             {{-- <button type="submit" class="change">Save</button> --}}
 

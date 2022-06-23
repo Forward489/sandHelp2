@@ -4,7 +4,7 @@
     <div class="profile-card">
         <div class="profile-header text-center">
             <div style="border-bottom: 2px solid #c28400;">
-                <a href="{{ route('landing_testing') }}"><img src="/Images/logo.png" alt="" class="logo"></a>
+                <a href="{{ route('home_page') }}"><img src="/Images/logo.png" alt="" class="logo"></a>
             </div>
 
             <div class="settings-wrapper text-right">
@@ -14,7 +14,11 @@
             @if (auth()->user()->profile_picture)
                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="" class="profile-photo">
             @else
-                <img src="/profilePhotos/stock.png" alt="" class="profile-photo">
+                @if (auth()->user()->avatar)
+                    <img src="{{ auth()->user()->avatar }}" alt="" class="profile-photo" />
+                @else
+                    <img src="/profilePhotos/stock.png" alt="" class="profile-photo">
+                @endif
             @endif
             {{-- <img src="/profilePhotos/stock.png" alt="" class="profile-photo"> --}}
 
@@ -26,9 +30,23 @@
         </div>
         <div class="profile-body">
             <div class="points font-weight-bold text-center pb-2">
-                <img src="/Images/TIER 1.png" class="pb-2" width="50px" alt="">
-                <div style="display: inline-block; margin-left:2px;">{{ auth()->user()->points }} points</div>
+                @if (auth()->user()->points > 0 && auth()->user()->points < 200)
+                    <img src="/Images/TIER 3.png" class="pb-2" width="50px" alt="">
+                @elseif(auth()->user()->points > 200 && auth()->user()->points < 1000)
+                    <img src="/Images/TIER 2.png" class="pb-2" width="50px" alt="">
+                @else
+                    <img src="/Images/TIER 1.png" class="pb-2" width="50px" alt="">
+                @endif
+                {{-- <img src="/Images/TIER 1.png" class="pb-2" width="50px" alt=""> --}}
 
+                <div style="display: inline-block; margin-left:2px;">{{ number_format(auth()->user()->points) }} points</div>
+                @php
+                    $total_money_donate = (auth()->user()->points / 100) * 5000;
+                    
+                    $total_money_donate = number_format($total_money_donate);
+                @endphp
+                <br>
+                <div style="display: inline-block; margin-left:2px;">Rp. {{ $total_money_donate }}</div>
             </div>
 
             <!-- <hr> -->
@@ -45,7 +63,8 @@
                 <h5>Birth Date</h5>
                 <div>
                     @if (auth()->user()->birthdate)
-                        <h5>{{ auth()->user()->birthdate }}, {{ \Carbon\Carbon::parse(auth()->user()->birthdate)->age }}
+                        <h5>{{ auth()->user()->birthdate }},
+                            {{ \Carbon\Carbon::parse(auth()->user()->birthdate)->age }}
                             years old</h5>
                     @else
                         <h5>You have to set your birthdate first</h5>

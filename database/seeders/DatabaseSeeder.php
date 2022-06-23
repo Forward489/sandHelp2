@@ -39,9 +39,9 @@ class DatabaseSeeder extends Seeder
         //     User::create($glenn[$i]);
         // }
         // User::factory(20)->create();
-        User::create($glenn);
+        // User::create($glenn);
         User::factory(5)->create();
-        Donation::factory(5)->create();
+        Donation::factory(15)->create();
         // User::factory(13)->create();
 
 

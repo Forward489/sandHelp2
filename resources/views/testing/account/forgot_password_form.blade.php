@@ -5,8 +5,8 @@
     <h3 class="welcome pb-5">
         Reset your Password
     </h3>
-    <div class="inputWrapper text-left">
-        <form action="{{ route('reset.password.control') }}" method="post" class="form-group">
+    <div class="inputWrapper text-left" >
+        <form action="{{ route('reset.password.control') }}" method="post" class="form-group" id="demo-form">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
             <input type="hidden" class="form-control" name="email" value="{{ $email }}" id="email">
@@ -24,7 +24,7 @@
             <br>
             <label for="password_confirmation" class="inputLabel font-weight-bold pt-2">Confirm New Password</label><br>
             <div>
-                <input type="password_confirmation" name="password_confirmation" id="password_confirmation" placeholder="Confirm your new Password"
+                <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm your new Password"
                     class="inputBox">
                 <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
                 @error('password_confirmation')

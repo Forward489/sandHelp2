@@ -42,30 +42,74 @@
                 </div>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <!-- <hr class="mt-5"> -->
+                @guest
+
+                    <div class="bar" style="border-top: 0.8px solid rgba(90, 90, 90, 0.555)">
+                        <a href="{{ route('init') }}" class="">
+                            <img src="/Images/home.png" class="icon" width="50px" alt="" style="" />
+                            <h3 class="text-bar">HOME</h3>
+                        </a>
+                    </div>
+                    <!-- <hr> -->
+                    <div class="bar">
+                        <a href="{{ route('init') }}#donationCard" class="" id="donationCardLink">
+                            <img src="/Images/donate.png" class="icon" width="50px" alt="" style="" />
+                            <h3 class="text-bar">DONATE NOW</h3>
+                        </a>
+                    </div>
+                    <!-- <hr> -->
+                    <div class="bar">
+                        <a href="{{ route('init') }}#leaderboard" class="">
+                            <img src="/Images/leaderboard.png" class="icon" width="50px" alt=""
+                                style="" />
+                            <h3 class="text-bar">LEADERBOARD</h3>
+                        </a>
+                    </div>
+                    <!-- <hr> -->
+                    <div class="bar">
+                        <a href="{{ route('init') }}#location-container" class="">
+                            <img src="/Images/location.png" class="icon" width="50px" alt="" style="" />
+                            <h3 class="text-bar">PROJECT LOCATIONS</h3>
+                        </a>
+                    </div>
+
+                    <!-- <hr> -->
+                </div>
+
+                <!-- Sidebar End -->
+
+                <!-- Navbar Button -->
+                <div id="main" class="mr-auto">
+                    <button class="openbtn" id="openBtn" onclick="openNav()">
+                        ☰
+                    </button>
+                </div>
+                <!-- Navbar Button End -->
+            @endguest
+            @auth
                 <div class="bar" style="border-top: 0.8px solid rgba(90, 90, 90, 0.555)">
-                    <a href="{{ route('init') }}" class="">
+                    <a href="{{ route('home_page') }}" class="">
                         <img src="/Images/home.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">HOME</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
-                    <a href="{{ route('init') }}#donationCard" class="" id="donationCardLink">
+                    <a href="{{ route('home_page') }}#donationCard" class="" id="donationCardLink">
                         <img src="/Images/donate.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">DONATE NOW</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
-                    <a href="{{ route('init') }}#leaderboard" class="">
-                        <img src="/Images/leaderboard.png" class="icon" width="50px" alt=""
-                            style="" />
+                    <a href="{{ route('home_page') }}#leaderboard" class="">
+                        <img src="/Images/leaderboard.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">LEADERBOARD</h3>
                     </a>
                 </div>
                 <!-- <hr> -->
                 <div class="bar">
-                    <a href="{{ route('init') }}#location-container" class="">
+                    <a href="{{ route('home_page') }}#location-container" class="">
                         <img src="/Images/location.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">PROJECT LOCATIONS</h3>
                     </a>
@@ -83,4 +127,6 @@
                 </button>
             </div>
             <!-- Navbar Button End -->
+
+        @endauth
         </div>

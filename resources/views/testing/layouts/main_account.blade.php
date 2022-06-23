@@ -77,7 +77,7 @@
 
                 <div class="col-md-4 text-center" id="form_input">
                     <div>
-                        <a href="{{ route('landing_testing') }}"><img src="/Images/banner_form.png" width="100%" class="banner"
+                        <a href="{{ route('init') }}"><img src="/Images/banner_form.png" width="100%" class="banner"
                                 alt=""></a>
                     </div>
 
