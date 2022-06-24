@@ -20,7 +20,8 @@
     }
     obj = document.getElementById("currentProgress");
     console.log(obj.getAttribute("data-value"))
-    animateProgessNumber(obj, 0, Number(obj.getAttribute("data-value")), 2000)
+    animateProgessNumber(obj, 0, Number(obj.getAttribute("data-value")), 3500)
+    // animateProgessNumber(obj, 0, Number(obj.getAttribute("data-value")), 60000)
 
     //Function Ganti background sesuai jam
     function changeBackground() {

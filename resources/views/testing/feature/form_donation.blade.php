@@ -74,15 +74,22 @@
                                     <br>
                                     <input type="hidden" name="money_amount_rupiah" class="money_amount_rupiah">
                                     <input type="hidden" name="money_amount_dollar" class="money_amount_dollar">
-                                    <input type="text" id="displayName" class="inputDetails name_donation" required
-                                        onclick="resetColorButtons()" placeholder="Name" name="amountDonation">
-                                    <br>
+                                    @guest
+                                        <input type="text" id="displayName" class="inputDetails name_donation" required
+                                            onclick="resetColorButtons()" placeholder="Name" name="amountDonation">
+                                        <br>
+                                    @endguest
+                                    @auth
+                                        <input type="text" id="displayName" class="inputDetails name_donation" required
+                                            onclick="resetColorButtons()" placeholder="Name" name="amountDonation"
+                                            value="{{ auth()->user()->name }}">
+                                        <br>
+                                    @endauth
                                     <label for="message" class="labelInputs">Message</label>
                                     <br>
                                     <input type="text" id="displayName" maxlength="40"
                                         class="inputDetails message_donation" onclick="resetColorButtons()"
                                         placeholder="Message for Indonesia's Beach" name="amountDonation" required>
-
                                     <br>
                                     <label for="total" class="labelInputs">Total</label>
                                     <br>
@@ -112,8 +119,8 @@
                                     {{-- <div id="paypal-button-container" style="max-width: 100%;"></div> --}}
                                     @guest
                                         <a href="{{ route('login_trial') }}" class="text-decoration-none text-white">
-                                            <button type="button" value="" id="btnSubmit" style="width: 100%;">Login
-                                                first !</button>
+                                            <button type="button" value="" id="btnSubmit"
+                                                style="width: 100%;">Payment</button>
                                         </a>
                                     @endguest
                                     @auth

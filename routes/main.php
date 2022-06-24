@@ -26,7 +26,7 @@ use App\Http\Controllers\FeatureController;
 // Auth::routes(['verify'=>true]);
 
 // Route::get('/edit_profile', [UpdateProfileController::class, 'index'])->name('edit_profile')->middleware('auth');
-// Route::post('/edit_profile', [UpdateProfileController::class, 'update'])->name('submit_edit')->middleware('auth');
+Route::post('/edit_profile', [UpdateProfileController::class, 'update'])->name('submit_edit')->middleware('auth');
 // Route::get('/homePage', [UpdateProfileController::class, 'landingPage'])->middleware('auth');
 
 Route::get('/result', [FeatureController::class, 'query'])->name('getTableResult');

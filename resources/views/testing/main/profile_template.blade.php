@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="/stylesheets/profilePage.css">
     <script src="/Scripts/changeBackground.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
 
     <title>{{ $title }}</title>
 </head>
@@ -53,6 +54,7 @@
         {{-- @include('testing.layouts.sidebar') --}}
         <!-- <div w3-include-html="/htmls/preloader.html"></div> -->
         <!-- <div w3-include-html="/htmls/header.html"></div> -->
+        {{-- @include('testing.layouts.header') --}}
         <div class="layer"></div>
         <div class="video-container">
             <!-- Video Background -->

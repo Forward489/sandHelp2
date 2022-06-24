@@ -30,9 +30,9 @@
         </div>
         <div class="profile-body">
             <div class="points font-weight-bold text-center pb-2">
-                @if (auth()->user()->points > 0 && auth()->user()->points < 200)
+                @if (auth()->user()->points > 0 && auth()->user()->points < 1000)
                     <img src="/Images/TIER 3.png" class="pb-2" width="50px" alt="">
-                @elseif(auth()->user()->points > 200 && auth()->user()->points < 1000)
+                @elseif(auth()->user()->points > 1000 && auth()->user()->points < 50000)
                     <img src="/Images/TIER 2.png" class="pb-2" width="50px" alt="">
                 @else
                     <img src="/Images/TIER 1.png" class="pb-2" width="50px" alt="">
@@ -40,13 +40,13 @@
                 {{-- <img src="/Images/TIER 1.png" class="pb-2" width="50px" alt=""> --}}
 
                 <div style="display: inline-block; margin-left:2px;">{{ number_format(auth()->user()->points) }} points</div>
-                @php
+                {{-- @php
                     $total_money_donate = (auth()->user()->points / 100) * 5000;
                     
                     $total_money_donate = number_format($total_money_donate);
-                @endphp
+                @endphp --}}
                 <br>
-                <div style="display: inline-block; margin-left:2px;">Rp. {{ $total_money_donate }}</div>
+                {{-- <div style="display: inline-block; margin-left:2px;">Rp. {{ $total_money_donate }}</div> --}}
             </div>
 
             <!-- <hr> -->

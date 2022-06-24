@@ -22,11 +22,7 @@
                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" id="output" alt=""
                     class="profile-photo">
             @else
-                @if (auth()->user()->avatar)
-                    <img src="{{ auth()->user()->avatar }}" alt="" class="profile-photo" />
-                @else
-                    <img src="/profilePhotos/stock.png" id="output" alt="" class="profile-photo">
-                @endif
+                <img src="/profilePhotos/stock.png" id="output" alt="" class="profile-photo">
             @endif
 
             {{-- <h3 class="name">Marcellino Julian Gozal</h3> --}}
@@ -126,6 +122,9 @@
 
         var loadFile = function(event) {
             var image = document.getElementById("output");
+            $(document).on('change', '#output', function() {
+                $('#output').attr('src', "/profilePhotos/stock.png");
+            });
             image.src = URL.createObjectURL(event.target.files[0]);
         };
 
@@ -141,6 +140,11 @@
                 }
                 $(this).toggleClass('fa-eye fa-eye-slash')
             })
+
+            // $('#file-upload').click(function() {
+            //     // <img src="/profilePhotos/stock.png" id="output" alt="" class="profile-photo">
+            //     $('#output').attr('src', "/profilePhotos/stock.png");
+            // });
         });
     </script>
 

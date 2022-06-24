@@ -390,7 +390,7 @@ class AccountController extends Controller
             return view('testing.main.change_profile', ['title' => 'Edit Profile']);
             // return view('main.change_profile', ['title' => 'Change Profile']);
         } else {
-            return view('account.changePassword', ['title' => 'Change Password']);
+            return view('testing.account.change_password', ['title' => 'Change Password']);
         }
     }
 

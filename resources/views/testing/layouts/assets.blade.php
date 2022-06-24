@@ -35,6 +35,8 @@
     <script src="/Scripts/popup.js"></script>
     <script src="/Scripts/sidebar.js"></script>
     <script src="/Scripts/preloader.js"></script>
-    <link rel="stylesheet" href="/stylesheets/sidebar.css">
     <script src="/Scripts/sidebar.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/preloader.css">
+    {{-- <script src="/Scripts/preloader.js"></script> --}}
     {{-- <link rel="stylesheet" href="/stylesheets/footer.css"> --}}

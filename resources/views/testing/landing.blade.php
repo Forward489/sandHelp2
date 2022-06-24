@@ -17,6 +17,7 @@ foreach ($donations as $a) {
 <div style="overflow-x:hidden;">
 
     <body onload="changeBackground('logo')">
+        @include('testing.layouts.preloader')
 
         <!-- Sidebar -->
         {{-- <div w3-include-html="/htmls/sidebar.html"></div> --}}

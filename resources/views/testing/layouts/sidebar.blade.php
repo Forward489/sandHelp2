@@ -1,24 +1,25 @@
         {{-- <div class="bg-dark"> --}}
+        <link rel="stylesheet" href="/stylesheets/sidebar.css">
+        {{-- <script src="/Scripts/sidebar.js"></script> --}}
+        {{-- <script></script> --}}
         <div>
             <!-- Sidebar -->
             <div id="mySidebar" class="sidebar">
                 <div class="profile text-center">
                     @auth
-                        <div class="photo-container">
-                            @if (!auth()->user()->profile_picture)
-                                @if (auth()->user()->avatar)
-                                    <a href="{{ route('profile_page_trial') }}"><img src="{{ auth()->user()->avatar }}"
-                                            alt="" class="profile-photo" /></a>
-                                @else
-                                    <a href="{{ route('profile_page_trial') }}"><img src="/profilePhotos/stock.png"
-                                            alt="" class="profile-photo" /></a>
-                                @endif
+                        @if (!auth()->user()->profile_picture)
+                            @if (auth()->user()->avatar)
+                                <a href="{{ route('profile_page_trial') }}"><img src="{{ auth()->user()->avatar }}"
+                                        alt="" class="profile-photo" /></a>
                             @else
-                                <a href="{{ route('profile_page_trial') }}"><img
-                                        src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt=""
-                                        class="profile-photo" /></a>
+                                <a href="{{ route('profile_page_trial') }}"><img src="/profilePhotos/stock.png"
+                                        alt="" class="profile-photo" /></a>
                             @endif
-                        </div>
+                        @else
+                            <a href="{{ route('profile_page_trial') }}"><img
+                                    src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt=""
+                                    class="profile-photo" /></a>
+                        @endif
 
                         {{-- <div class="photo-container">
                             <a href="{{ route('profile_page_trial') }}"><img src="/profilePhotos/stock.png" alt=""

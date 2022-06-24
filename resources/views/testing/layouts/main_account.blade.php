@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="/stylesheets/accountHandling.css">
     <link rel="stylesheet" href="/stylesheets/emailHandling.css">
+    
     <link rel="icon" type="image/png" href="/Images/favicon.png">
     {{-- <link rel="stylesheet" href="/stylesheets/footer.css"> --}}
 
@@ -34,6 +35,8 @@
 
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
+    {{-- <script src="/Scripts/preloader.js"></script> --}}
+
 
     <script src="/node_modules/wowjs/dist/wow.min.js"></script>
     <script>
@@ -42,7 +45,9 @@
 
     {{-- <script src="/Scripts/includeHtml.js"></script> --}}
     <script src="/Scripts/changeBackground.js"></script>
+    <link rel="stylesheet" href="/stylesheets/preloader.css">
     <script src="/Scripts/preloader.js"></script>
+    
     {{-- <script src="/Scripts/popup.js"></script> --}}
 
     <title>{{ $title }}</title>
@@ -53,6 +58,7 @@
     <body class="wow fadeIn" style="" onload="changeBackground('no_logo')">
         {{-- <div w3-include-html="/htmls/popup.html" style=""></div> --}}
         <!-- <div w3-include-html="/htmls/preloader.html"></div> -->
+        @include('testing.layouts.preloader')
         <div class="loader_bg">
             <div class="loader">
     
