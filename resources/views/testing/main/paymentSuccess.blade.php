@@ -1,11 +1,14 @@
 @auth
     @extends('testing.layouts.transaction')
 
+
     @section('container')
+        <link rel="stylesheet" href="/stylesheets/sidebar.css">
         <div class="card-container text-center">
             <img src="/Images/transaction_success.png" class="icon" alt="">
             <h4 class="title mt-5">
-                Your donation has been sent! <br>
+                Your donation has been sent!
+                <br>
                 See your donation in the leaderboard !
             </h4>
 

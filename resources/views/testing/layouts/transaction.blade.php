@@ -19,6 +19,7 @@
 
 
     <link rel="stylesheet" href="/stylesheets/transactionHandling.css">
+    <link rel="stylesheet" href="/stylesheets/sidebar.css">
     <link rel="icon" type="image/png" href="/Images/favicon.png">
 
 
@@ -33,7 +34,7 @@
     <script>
         new WOW().init();
     </script>
-    
+
     <script src="/Scripts/preloader.js"></script>
     <!-- <script src="/Scripts/includeHtml.js"></script> -->
     <script src="/Scripts/changeBackground.js"></script>
@@ -42,11 +43,11 @@
     <title>{{ $title }}</title>
 </head>
 
-<div style="overflow:hidden" class="">
+<div class="">
 
-    <body class="" style="overflow: hidden;" onload="changeBackground('no_logo')">
+    <body class="" onload="changeBackground('no_logo')">
         <!-- <div w3-include-html="/htmls/header.html"></div> -->
-        @include('testing.layouts.header')
+        {{-- @include('testing.layouts.header') --}}
         @include('testing.layouts.sidebar')
         <!-- <div w3-include-html="/htmls/sidebar.html"></div> -->
         <div class="layer">
@@ -63,14 +64,17 @@
 
         @yield('container')
 
-        @include('testing.layouts.landing_footer')
-         {{-- <div w3-include-html="/htmls/footer.html" style="position: absolute;bottom:0;width:100vw"></div> --}}
-            
+        <div class="footer-example">
+            @include('testing.layouts.landing_footer')
+        </div>
+
+        {{-- <div w3-include-html="/htmls/footer.html" style="position: absolute;bottom:0;width:100vw"></div> --}}
+
     </body>
 </div>
 
 <script>
-   includeHTML();
+    includeHTML();
 </script>
 
 </html>

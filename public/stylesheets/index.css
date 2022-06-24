@@ -41,7 +41,7 @@ input[type="text"]{
 }
 
 input[type="text"]::placeholder{
-    
+    font-size: 13px;
 }
 
 input[type="text"]:focus {
@@ -378,6 +378,8 @@ option:hover{
 
 #anonymousCheckbox {
     padding-left: 20px;
+    margin-top:-200px;
+    margin-left:-20px;
 }
 
 
