@@ -3,7 +3,7 @@
 
 
     @section('container')
-        <link rel="stylesheet" href="/stylesheets/sidebar.css">
+        {{-- <link rel="stylesheet" href="/stylesheets/sidebar.css"> --}}
         <div class="card-container text-center">
             <img src="/Images/transaction_success.png" class="icon" alt="">
             <h4 class="title mt-5">

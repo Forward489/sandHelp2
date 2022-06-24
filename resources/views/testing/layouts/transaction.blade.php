@@ -48,7 +48,7 @@
     <body class="" onload="changeBackground('no_logo')">
         <!-- <div w3-include-html="/htmls/header.html"></div> -->
         {{-- @include('testing.layouts.header') --}}
-        @include('testing.layouts.sidebar')
+        {{-- @include('testing.layouts.sidebar') --}}
         <!-- <div w3-include-html="/htmls/sidebar.html"></div> -->
         <div class="layer">
 
