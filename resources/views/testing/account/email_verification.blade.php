@@ -38,9 +38,11 @@
             document.getElementById("demo-form").submit();
         }
     </script>
+
+
 @endsection
 
-@section('footer')
+{{-- @section('footer')
     <link rel="stylesheet" href="/stylesheets/footer.css">
     @include('testing.layouts.landing_footer')
-@endsection
+@endsection --}}

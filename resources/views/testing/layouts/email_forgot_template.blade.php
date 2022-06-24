@@ -1,5 +1,36 @@
-<h1>Forgot Password</h1>
+{{-- <h1>Verify e-mail</h1>
 
 <p>{!! $body !!}</p>
-<br>
-<a href="{{ $action_link }}">Reset Password</a>
+<br> --}}
+{{-- <form action="{{ $action_link }}" method="post"></form> --}}
+{{-- <a href="{{ $action_link }}">Verify E-mail</a> --}}
+
+@component('mail::layout')
+{{-- Header --}}
+@slot('header')
+@component('mail::header', ['url' => config('app.url')])
+{{ config('app.name') }}
+@endcomponent
+@endslot
+
+{{-- Body --}}
+
+<h2 style="margin-left: 17.5%">
+    Click the button below to reset your password
+</h2>
+
+@component('mail::button', ['url' => $action_link])
+    Reset Password
+@endcomponent
+
+{{-- Subcopy --}}
+
+
+{{-- Footer --}}
+@slot('footer')
+@component('mail::footer')
+©{{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+@endcomponent
+@endslot
+@endcomponent
+

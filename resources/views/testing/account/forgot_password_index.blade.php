@@ -2,13 +2,25 @@
 
 @section('container')
     @if (session()->has('sent'))
-        <div class="alert alert-primary" role="alert">
-            {{ session('sent') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('sent') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('google_logged'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('google_logged') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('google_logged') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     <h3 class="welcome pb-1">
@@ -33,7 +45,7 @@
             <input type="email" name="email" id="email" placeholder="Type your email" class="inputBox">
             @error('email')
                 <br>
-                <label for="email" class="inputLabel font-weight-bold">{{ $message }}</label>
+                <label for="email" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
             @enderror
             <br>
             <div class="text-center pt-3">

@@ -12,6 +12,8 @@ use Str;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use App\Mail\VerificationPage;
+use App\Mail\ForgotPassword;
 
 use function PHPUnit\Framework\isNull;
 
@@ -247,12 +249,18 @@ class AccountController extends Controller
             'title' => 'E-mail Verification'
         ]);
 
-        $body = "Please verify your email on link down below to start accessing our website";
+        // $body = "Please verify your email on link down below to start accessing our website";
 
-        Mail::send('layouts.email_verification_template', ['action_link' => $action_link, 'body' => $body, 'title' => 'Verify E-mail'], function ($message) use ($email) {
-            $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
-            $message->to($email, 'Sand Help')->subject('Verify E-mail');
-        });
+        // Mail::send(new VerificationPage($action_link), ['action_link'=> $action_link], function ($message) use ($email) {
+        //     $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
+        //     $message->to($email, 'Sand Help')->subject('Verify E-mail');
+        // });
+        Mail::to($email)->send(new VerificationPage($action_link));
+       
+        // Mail::send('testing.layouts.email_verification_template', ['action_link' => $action_link, 'body' => $body, 'title' => 'Verify E-mail'], function ($message) use ($email) {
+        //     $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
+        //     $message->to($email, 'Sand Help')->subject('Verify E-mail');
+        // });
     }
 
     public function emailVerification(Request $request, $token = NULL)
@@ -336,12 +344,14 @@ class AccountController extends Controller
         //     'title' => 'Password Reset'
         // ]);
 
-        $body = "We received a request to reset your password under the e-mail of $request->email. To reset your password, click the link below";
+        // $body = "We received a request to reset your password under the e-mail of $request->email. To reset your password, click the link below";
 
-        Mail::send('layouts.email_forgot_template', ['action_link' => $action_link, 'body' => $body, 'title' => 'Reset Password'], function ($message) use ($request) {
-            $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
-            $message->to($request->email, 'Sand Help')->subject('Reset Password');
-        });
+        Mail::to($request->email)->send(new ForgotPassword($action_link));
+
+        // Mail::send('testing.layouts.email_forgot_template', ['action_link' => $action_link, 'body' => $body, 'title' => 'Reset Password'], function ($message) use ($request) {
+        //     $message->from('glenn.sandhelp@gmail.com', 'Sand Help');
+        //     $message->to($request->email, 'Sand Help')->subject('Reset Password');
+        // });
 
         return back()->with('sent', 'We have sent you the link to reset your password. Check your e-mail !');
     }

@@ -125,6 +125,11 @@ body{
     transform: scale(0.8);
 }
 
+.dont-worry-box p{
+    margin-left: 30px;
+    margin-right: 30px
+}
+
 .inputWrapper{
     width: 100%;
     display: flex;
@@ -207,11 +212,22 @@ a:hover{
     
 }
 
-.sign-in, .next,.register, .reset,.verify{
+.sign-in, .next,.register, .reset{
     width: 250px;
     color: white;
     margin-top: 15px;
     height: 6vh;
+    border-radius: 30px;
+    border: 0.5px solid #e9cea0;
+    background-color: #c28400;
+    font-weight: bold;
+    font-size: large;
+}
+.verify{
+    width: 250px;
+    color: white;
+    margin-top: 15px;
+    height: 8vh;
     border-radius: 30px;
     border: 0.5px solid #e9cea0;
     background-color: #c28400;
@@ -301,6 +317,12 @@ a:hover{
         padding-left: 0px;
         padding-right: 0px;
         margin-top: 20px;
+    }
+    
+
+    .dont-worry-box p{
+        margin-left: 30px;
+        margin-right: 30px
     }
 
     body{

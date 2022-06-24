@@ -2,13 +2,25 @@
 
 @section('container')
     @if (session()->has('existing_alert'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('existing_alert') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('existing_alert') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('google_captcha_error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('google_captcha_error') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('google_captcha_error') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     <h3 class="welcome pb-5">
@@ -22,15 +34,14 @@
                 <input type="text" name="name" id="name" placeholder="Type your full name" class="inputBox">
                 @error('name')
                     <br>
-                    <label for="name" class="inputLabel font-weight-bold">{{ $message }}</label>
+                    <label for="name" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                 @enderror
                 <br>
                 <label for="email" class="inputLabel font-weight-bold pt-2">Email</label><br>
                 <input type="email" name="email" id="email" placeholder="Type your email" class="inputBox"><br>
                 @error('email')
                     <br>
-                    <label for="email" class="inputLabel font-weight-bold">{{ $message }}</label>
-                    
+                    <label for="email" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                 @enderror
                 <br>
                 <div class="text-center pt-3">
@@ -44,6 +55,10 @@
             <div class="form-group">
                 <label for="birthdate" class="inputLabel font-weight-bold">Date of Birth</label> <br>
                 <input type="date" name="birthdate" id="birthdate" placeholder="" class="inputBox" style="">
+                @error('birthdate')
+                    <br>
+                    <label for="birthdate" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
+                @enderror
                 <br>
                 <label for="gender" class="inputLabel font-weight-bold">Gender</label> <br>
                 <input type="radio" name="gender" value="M" class="mt-3" style=" accent-color: #c28400;">
@@ -62,8 +77,7 @@
                     Female</div>
                 @error('gender')
                     <br>
-                    <label for="gender" class="inputLabel font-weight-bold">{{ $message }}</label>
-                    
+                    <label for="gender" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                 @enderror
                 <br>
                 <label for="password" class="inputLabel font-weight-bold">Password</label> <br>
@@ -72,8 +86,7 @@
                     <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
                     @error('password')
                         <br>
-                        <label for="password" class="inputLabel font-weight-bold">{{ $message }}</label>
-                        
+                        <label for="password" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                     @enderror
                 </div>
                 <br>
@@ -85,8 +98,7 @@
                     <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
                     @error('password_confirmation')
                         <br>
-                        <label for="password_confirmation" class="inputLabel font-weight-bold">{{ $message }}</label>
-                        
+                        <label for="password_confirmation" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                     @enderror
                 </div>
 
@@ -95,12 +107,12 @@
                     {{-- <input type="submit" name="" id="" class="register" value="Register now"> --}}
                     <button class="g-recaptcha register" data-sitekey="{{ env('GOOGLE_CAPTCHA_SITEKEY') }}"
                         data-callback='onSubmit'>Submit</button>
-                    
+
                 </div>
                 <div class="text-center pt-3">
                     <a onclick="previous()" class="text-center" style="color: #c28400">Previous</a>
 
-                    
+
                 </div>
 
             </div>

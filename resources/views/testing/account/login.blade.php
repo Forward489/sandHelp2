@@ -2,49 +2,106 @@
 
 {{-- {{ HTML::style('css/app.css'); }} --}}
 @section('container')
+    {{-- <script src="/Scripts/popup.js"></script> --}}
+    {{-- <link rel="stylesheet" href="/stylesheets/popup.css"> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> --}}
     @if (session()->has('success'))
-        <div class="alert alert-primary" role="alert">
-            {{ session('success') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('success') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('google_captcha_error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('google_captcha_error') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('google_captcha_error') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('verified'))
-        <div class="alert alert-primary" role="alert">
-            {{ session('verified') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('verified') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('info'))
-        <div class="alert alert-success" role="alert">
-            {{ session('info') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('info') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('reregister'))
-        <div class="alert alert-warning" role="alert">
-            {{ session('reregister') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('reregister') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('loginError'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('loginError') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('loginError') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('email_not_verified'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('email_not_verified') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('email_not_verified') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('invalid_verification'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('invalid_verification') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('invalid_verification') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     @if (session()->has('logged out'))
-        <div class="alert alert-success" role="alert">
-            {{ session('logged out') }}
+        <div id="popup" class="popup animate__animated animate__fadeIn text-left" onload="">
+            <img src="/Images/tanda_seru.png" width="50px" alt="" id="tanda_seru">
+            <div id="message" style="display: inline;">
+                {{ session('logged out') }}
+            </div>
+            <script>
+                showPopup()
+            </script>
         </div>
     @endif
     {{-- <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}"> --}}
@@ -68,7 +125,7 @@
             <input type="email" name="email" id="email" placeholder="Type your email" class="inputBox">
             @error('email')
                 <br>
-                <label for="email" class="inputLabel font-weight-bold">{{ $message }}</label>
+                <label for="email" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
             @enderror
             <br>
             <label for="password" class="inputLabel font-weight-bold pt-2">Password</label><br>
@@ -76,7 +133,7 @@
             <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
             @error('password')
                 <br>
-                <label for="password" class="inputLabel font-weight-bold">{{ $message }}</label>
+                <label for="password" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
             @enderror
             <br>
             <div class="text-right pt-3">

@@ -51,6 +51,13 @@
                             <h3 class="text-bar">HOME</h3>
                         </a>
                     </div>
+
+                    <div class="bar">
+                        <a href="{{ route('about') }}" class="" id="donationCardLink">
+                            <img src="/Images/about-us.png" class="icon" width="50px" alt="" style="">
+                            <h3 class="text-bar">ABOUT US</h3>
+                        </a>
+                    </div>
                     <!-- <hr> -->
                     <div class="bar">
                         <a href="{{ route('init') }}#donationCard" class="" id="donationCardLink">
@@ -92,6 +99,12 @@
                     <a href="{{ route('home_page') }}" class="">
                         <img src="/Images/home.png" class="icon" width="50px" alt="" style="" />
                         <h3 class="text-bar">HOME</h3>
+                    </a>
+                </div>
+                <div class="bar">
+                    <a href="{{ route('about') }}" class="" id="donationCardLink">
+                        <img src="/Images/about-us.png" class="icon" width="50px" alt="" style="">
+                        <h3 class="text-bar">ABOUT US</h3>
                     </a>
                 </div>
                 <!-- <hr> -->

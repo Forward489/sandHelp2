@@ -85,7 +85,7 @@
                                             value="{{ auth()->user()->name }}">
                                         <br>
                                     @endauth
-                                    <label for="message" class="labelInputs">Message</label>
+                                    <label for="message" class="labelInputs ">Message</label>
                                     <br>
                                     <input type="text" id="displayName" maxlength="40"
                                         class="inputDetails message_donation" onclick="resetColorButtons()"
@@ -106,7 +106,7 @@
                                     </div>
                                     <br> --}}
 
-                                    <div class="form-check form-switch">
+                                    <div class="form-check form-switch anonymous-switch">
                                         <label class="form-check-label" class="labelInputs" id="anonymousCheckbox">
                                             <input type="checkbox" class="form-check-input checkbox" value="1"
                                                 id="anonymous">

@@ -46,6 +46,9 @@ Route::get('/profile', [UpdateProfileController::class, 'profile_page'])->name('
 Route::get('/profile/edit', [UpdateProfileController::class, 'change_profile'])->name('change_page_trial')->middleware('auth');
 
 
+//About us
+Route::get('/about', [FeatureController::class, 'about'])->name('about');
+
 
 
 

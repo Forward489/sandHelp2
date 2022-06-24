@@ -36,6 +36,10 @@ class FeatureController extends Controller
         }
     }
 
+    public function about() {
+        return view('testing.main.about_us', ['title'=>'About Us']);
+    }
+
     public function payment_success()
     {
         return view('testing.main.paymentSuccess', ['title' => 'Success']);

@@ -1,23 +1,31 @@
 .popup{
-    visibility: hidden;
-    text-align: center;
-    background-color: #c28400;
-    color: white;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    
-    top: 5vh;
-    margin-right: 3vw;
-    margin-bottom: 4vh;
-    padding: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    /* border: 2px solid #c28400; */
-    z-index: 1000;
-    width: 90%;
+  visibility: hidden;
+  text-align: center;
+  background-color: #c28400;
+  color: white;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 150%;
+  top: 3vh;
+  margin-left: -25%;
+
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  /* border: 2px solid #c28400; */
+  z-index: 1000;
+
+}
+
+
+@media only screen and (max-width: 600px){
+  .popup{
+    margin-left: -6%;
+    width:110%
+  }
 }
 
 #message{
@@ -33,6 +41,7 @@
 #tanda_seru{
     margin-right: 20px;
 }
+
 
   /* Add animation (fade in the popup) */
   @-webkit-keyframes fadeIn {

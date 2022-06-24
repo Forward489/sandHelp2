@@ -1,0 +1,139 @@
+@font-face {
+    font-family: 'Zona  Ultra';
+    src: url("/Fonts/ZonaPro-ExtraLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'ZonaProUltra';
+    font-weight: bold;
+    src: url("/Fonts/ZonaPro-Bold.otf") format("opentype");
+}
+
+/* body{
+
+} */
+
+.container-upper{
+    /* background: linear-gradient(to bottom,#c28400 ,white); */
+    background-image: url(/Images/about-us-bg.png);
+    background-repeat: no-repeat;
+    display: flex;
+    margin-top: -8vh;
+    /* margin-top: -4vh; */
+    height: 108vh;
+    /* height: 104vh; */
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    background-color: #d5f5fe;
+}
+
+.upper-image{
+    width: 80%;
+    margin-left: 5vw;
+    margin-top: 10vh;
+}
+
+.title{
+    font-family: "ZonaProUltra",sans-serif;
+    font-weight: bolder;
+    font-size: 100px;
+}
+
+.title-body{
+    text-align: justify;
+    font-size: 30px;
+    margin-right: 10vw;
+}
+
+.title-middle{
+    font-family: "ZonaProUltra",sans-serif;
+    font-weight: bolder;
+    font-size: 100px;
+}
+
+.steps{
+    width: 50%;
+}
+
+
+.left{
+    width: 50%;
+}
+
+.right{
+    display: inline-block;
+    width: 50%;
+}
+
+.container-middle{
+    background-color: #d5f5fe;
+}
+
+.middle-wrapper{
+    background-color: rgb(9, 16, 19);
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .upper-image{
+        margin-top: 10vh;
+        width: 90%;
+        margin-left: 3%;
+    }
+
+    .container-upper{
+        display: block;
+        height: 130vh;
+        padding-bottom: 140vh;
+
+    }
+
+    .title{
+        margin-top: 5vh;
+        font-size: 4rem;
+        
+    }
+
+    .title-body{
+        margin-right: 0;
+        margin: 10vw;
+        font-size: 1.5rem;
+    }
+
+    .left,.right{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (min-width:641px) and (max-width:1000px) {
+    .upper-image{
+        margin-top: 10vh;
+        width: 90%;
+        margin-left: 3%;
+    }
+
+    .container-upper{
+        display: block;
+        padding-bottom: 110vh;
+    }
+
+    .title{
+        margin-top: 5vh;
+        font-size: 4rem;
+    }
+
+    .title-body{
+        margin-right: 0;
+        margin: 10vw;
+        font-size: 1.5rem;
+    }
+
+    .left,.right{
+        width: 100%;
+        text-align: center;
+    }
+}

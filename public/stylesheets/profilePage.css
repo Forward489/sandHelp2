@@ -55,7 +55,7 @@ body {
     z-index: -2;
     top: 0;
     width: 105vw;
-    height: 100vh;
+    height: 150vh;
     object-fit: cover;
     opacity: 1;
 }
@@ -164,6 +164,16 @@ body::after{
     margin-bottom: -100px;
     font-weight: bold;
     color: #c28400;
+}
+
+.description{
+    border: 2px solid #c28400;
+    background-color: #dcbe89;
+    color: #ac6e03;
+}
+.description:focus{
+    background-color: #daae62;
+    color: #ffe5ac
 }
 
 .inputBox{

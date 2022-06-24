@@ -20,7 +20,7 @@ class DonationFactory extends Factory
         $money = $weight * 5000;
         return [
             'nickname' => $this->faker->name(),
-            'message' => $this->faker->sentence(10),
+            'message' => $this->faker->sentence(6),
             'trash_weights' => $weight,
             'money_amount' => $money,
         ];

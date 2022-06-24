@@ -34,7 +34,7 @@
                 <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
                 @error('password')
                     <br>
-                    <label for="password" class="inputLabel font-weight-bold">{{ $message }}</label>
+                    <label for="password" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                 @enderror
             </div>
 
@@ -46,7 +46,7 @@
                 <i class="fa fa-eye-slash" id="see_password" aria-hidden="true" data-is_password=true></i>
                 @error('password_confirmation')
                     <br>
-                    <label for="password_confirmation" class="inputLabel font-weight-bold">{{ $message }}</label>
+                    <label for="password_confirmation" style="color: red" class="inputLabel font-weight-bold">{{ $message }}</label>
                 @enderror
             </div>
 

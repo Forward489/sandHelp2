@@ -3,7 +3,7 @@
   left: 0;
   position: fixed;
   z-index: 9999;
-  background-color: orange;
+  background-color: rgb(222, 175, 88);
   height: 100%;
   width: 100%;
 }
@@ -19,7 +19,7 @@
 
 .loader:before, .loader:after{
   content: '';
-  border: 1em solid #ff5733;
+  border: 1em solid #ffffff;
   border-radius: 50%;
   width: inherit;
   height: inherit;

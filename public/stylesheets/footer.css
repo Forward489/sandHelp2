@@ -40,7 +40,9 @@ body{
 .footer {
     padding-top: 30px;
     bottom: 0;
-    background-color: #c28400;
+    background:linear-gradient(to bottom,#ffb311,#885d01);
+    /* background-image: url(/Images/about-us-bg.png); */
+
     z-index: 2;
 }
 
